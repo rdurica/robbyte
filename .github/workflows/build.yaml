@@ -11,7 +11,7 @@ jobs:
     name: Build & Publish
     runs-on: ubuntu-latest
     env:
-      APP_NAME: "rdurica/xxxx"  # <-- Name of application
+      APP_NAME: "rdurica/robbyte"  # <-- Name of application
       APP_ENV: "prod"
 
     steps:
