@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    {% include 'homepage/sections/header.html.twig' %}
+
+    <main class="main">
+        {% include 'homepage/sections/hero.html.twig' %}
+
+        {% include 'homepage/sections/about.html.twig' %}
+
+        {% include 'homepage/sections/projects.html.twig' %}
+
+        {% include 'homepage/sections/contact.html.twig' %}
+    </main>
+{% endblock %}

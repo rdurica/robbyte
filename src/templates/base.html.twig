@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Robert Durica{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Robert Ďurica – experienced PHP developer focused on backend development, API design, and performance optimization.">
+    <meta property="og:title" content="Robert Ďurica – PHP Backend Developer">
+    <meta property="og:image" content="/assets/img/favicon.ico">
+    <meta name="robots" content="index, follow">
+    <link rel="icon" href="/assets/img/favicon.ico" as="icon">
+
+    {% block stylesheets %}
+        <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style" onload="this.rel='stylesheet'">
+        <link rel="preload" href="{{ preload('/assets/css/app.css', {as: 'style'}) }}" as="style" onload="this.rel='stylesheet'">
+    {% endblock %}
+
+    {% block javascripts %}
+        <script rel="preload" src="{{ preload('/assets/js/app.js', {as: 'script'}) }}"></script>
+    {% endblock %}
+</head>
+<body>
+{% block body %}{% endblock %}
+    {% include 'footer.html.twig' %}
+</body>
+</html>
