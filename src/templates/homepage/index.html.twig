@@ -1,8 +1,14 @@
 {% extends 'base.html.twig' %}
 {% block body %}
     {% include 'homepage/sections/header.html.twig' %}
-
     <main class="main">
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="alert alert-{{ label }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
         {% include 'homepage/sections/hero.html.twig' %}
 
         {% include 'homepage/sections/about.html.twig' %}

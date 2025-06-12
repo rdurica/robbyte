@@ -62,27 +62,7 @@ function updateActiveNavLink() {
 // Contact form functionality
 function initializeContactForm() {
     const form = document.getElementById('contactForm');
-
     if (!form) return;
-
-    form.addEventListener('submit', function(e) {
-        e.preventDefault();
-
-        // Clear previous errors
-        clearFormErrors();
-
-        // Validate form
-        const formData = new FormData(form);
-        const errors = validateForm(formData);
-
-        if (errors.length > 0) {
-            displayFormErrors(errors);
-            return;
-        }
-
-        // Submit form
-        submitForm(formData);
-    });
 
     // Real-time validation
     const inputs = form.querySelectorAll('input, textarea');
@@ -101,10 +81,10 @@ function initializeContactForm() {
 function validateForm(formData) {
     const errors = [];
 
-    const name = formData.get('name')?.trim() || '';
-    const email = formData.get('email')?.trim() || '';
-    const subject = formData.get('subject')?.trim() || '';
-    const message = formData.get('message')?.trim() || '';
+    const name = formData.get('contact_form[name]')?.trim() || '';
+    const email = formData.get('contact_form[email]')?.trim() || '';
+    const subject = formData.get('contact_form[subject]')?.trim() || '';
+    const message = formData.get('contact_form[message]')?.trim() || '';
 
     if (!name) {
         errors.push({ field: 'name', message: 'Name is required' });

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>New Contact Message</title>
+    <style>
+        body {
+            background-color: #0d1117;
+            color: #e6edf3;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
+            padding: 20px;
+            line-height: 1.5;
+        }
+
+        .email-container {
+            background-color: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 6px;
+            padding: 24px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            color: #3a96ff;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            font-size: 0.875rem;
+            color: #c9d1d9;
+        }
+
+        strong {
+            color: #e6edf3;
+        }
+
+        .message-content {
+            white-space: pre-line;
+            background-color: #21262d;
+            padding: 1rem;
+            border-radius: 6px;
+            border: 1px solid #30363d;
+            color: #e6edf3;
+            font-size: 0.875rem;
+        }
+    </style>
+</head>
+<body>
+<div class="email-container">
+    <h2>New Contact Message</h2>
+    <p><strong>Name:</strong> {{ contact.name }}</p>
+    <p><strong>Email:</strong> {{ contact.email }}</p>
+    <p><strong>Subject:</strong> {{ contact.subject }}</p>
+    <h3 style="color: #3a96ff; margin-top: 2rem;">Message:</h3>
+    <div class="message-content">
+        {{ contact.message|nl2br }}
+    </div>
+</div>
+</body>
+</html>
