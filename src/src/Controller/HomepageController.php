@@ -13,6 +13,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Routing\Attribute\Route;
 
+use function Sentry\captureException;
+
 final class HomepageController extends AbstractController
 {
     public function __construct(private readonly MailFacade $mailFacade)
@@ -50,8 +52,9 @@ final class HomepageController extends AbstractController
 
             $this->addFlash('success', 'Message was successfully sent!');
         }
-        catch (TransportExceptionInterface|Exception)
+        catch (TransportExceptionInterface|Exception $e)
         {
+            captureException($e);
             $this->addFlash('error', 'Oops. Message cannot be sent. Please try again later or contact me directly.');
         }
 
