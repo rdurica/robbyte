@@ -3,3 +3,5 @@ sentry:
     options:
         environment: '%kernel.environment%'
         send_default_pii: true
+        ignore_exceptions:
+            - Symfony\Component\HttpKernel\Exception\NotFoundHttpException
