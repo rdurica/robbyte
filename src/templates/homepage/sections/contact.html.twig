@@ -21,43 +21,6 @@
                     </a>
                 </div>
             </div>
-            <div class="contact-form-wrapper">
-                {{ form_start(form, {'attr': {'class': 'contact-form', 'id': 'contactForm'}}) }}
-                <div class="form-group">
-                    {{ form_label(form.name) }}
-                    {{ form_widget(form.name, {'attr': {'id': 'name', 'required': true}}) }}
-                    <span class="error-message" id="nameError">
-                        {{ form_errors(form.name) }}
-                     </span>
-                </div>
-
-                <div class="form-group">
-                    {{ form_label(form.email) }}
-                    {{ form_widget(form.email, {'attr': {'id': 'email', 'required': true}}) }}
-                    <span class="error-message" id="emailError">
-                        {{ form_errors(form.email) }}
-                    </span>
-                </div>
-                <div class="form-group">
-                    {{ form_label(form.subject) }}
-                    {{ form_widget(form.subject, {'attr': {'id': 'subject', 'required': true}}) }}
-                    <span class="error-message" id="subjectError">
-                        {{ form_errors(form.subject) }}
-                    </span>
-                </div>
-
-                <div class="form-group">
-                    {{ form_label(form.message) }}
-                    {{ form_widget(form.message, {'attr': {'id': 'message', 'rows': 14, 'required': true}}) }}
-                    <span class="error-message" id="messageError">
-                        {{ form_errors(form.message) }}
-                    </span>
-                </div>
-
-                {{ form_widget(form.save, {'attr': {'class': 'btn-submit'}}) }}
-                <div class="form-status" id="formStatus"></div>
-                {{ form_end(form) }}
-            </div>
         </div>
     </div>
 </section>
