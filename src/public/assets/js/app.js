@@ -40,19 +40,46 @@ function updateActiveNavLink() {
 
     let current = '';
     const scrollPos = window.scrollY + 100;
+    const windowHeight = window.innerHeight;
+    const documentHeight = document.documentElement.scrollHeight;
 
-    // Find the last section that we've scrolled past
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop - 150;
+    // Check if we're at the bottom of the page
+    const isBottom = windowHeight + window.scrollY >= documentHeight - 50;
 
-        if (scrollPos >= sectionTop) {
-            current = section.getAttribute('id');
-        }
-    });
-
-    // If we're at the very top, set home as active
-    if (window.scrollY < 100) {
+    if (isBottom) {
+        // If at bottom, activate the last section
+        const lastSection = sections[sections.length - 1];
+        current = lastSection.getAttribute('id');
+    } else if (window.scrollY < 100) {
+        // If we're at the very top, set home as active
         current = 'home';
+    } else {
+        // Find the section that's most visible in the viewport
+        let maxVisibility = 0;
+
+        sections.forEach(section => {
+            const rect = section.getBoundingClientRect();
+            const sectionTop = rect.top;
+            const sectionBottom = rect.bottom;
+            const sectionHeight = rect.height;
+
+            // Calculate how much of the section is visible
+            let visibleHeight = 0;
+
+            if (sectionTop < windowHeight && sectionBottom > 0) {
+                const visibleTop = Math.max(0, sectionTop);
+                const visibleBottom = Math.min(windowHeight, sectionBottom);
+                visibleHeight = visibleBottom - visibleTop;
+
+                // Calculate percentage of section that's visible
+                const visibilityRatio = visibleHeight / sectionHeight;
+
+                if (visibilityRatio > maxVisibility) {
+                    maxVisibility = visibilityRatio;
+                    current = section.getAttribute('id');
+                }
+            }
+        });
     }
 
     navLinks.forEach(link => {
