@@ -362,6 +362,7 @@ body::before {
     );
     opacity: 0;
     transition: opacity 0.3s ease;
+    pointer-events: none;
 }
 
 .tech-category::after {
@@ -375,6 +376,7 @@ body::before {
     );
     opacity: 0;
     transition: opacity 0.3s ease;
+    pointer-events: none;
 }
 
 .tech-category:hover {
@@ -502,6 +504,7 @@ body::before {
     );
     opacity: 0;
     transition: opacity 0.3s ease;
+    pointer-events: none;
 }
 
 .timeline-content::after {
@@ -515,6 +518,7 @@ body::before {
     );
     opacity: 0;
     transition: opacity 0.3s ease;
+    pointer-events: none;
 }
 
 .timeline-item:hover .timeline-content {
@@ -605,6 +609,7 @@ body::before {
     );
     opacity: 0;
     transition: opacity 0.3s ease;
+    pointer-events: none;
 }
 
 .project-card::after {
@@ -618,6 +623,7 @@ body::before {
     );
     opacity: 0;
     transition: opacity 0.3s ease;
+    pointer-events: none;
 }
 
 .project-card:hover {
@@ -808,6 +814,7 @@ body::before {
     );
     opacity: 0;
     transition: opacity 0.3s ease;
+    pointer-events: none;
 }
 
 .contact-method::after {
@@ -821,6 +828,7 @@ body::before {
     );
     opacity: 0;
     transition: opacity 0.3s ease;
+    pointer-events: none;
 }
 
 .contact-method:hover {
