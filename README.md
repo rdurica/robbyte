@@ -4,7 +4,7 @@
 [![Docker](https://img.shields.io/badge/Docker-powered-blue.svg)](https://www.docker.com/)
 [![composer](https://img.shields.io/badge/composer-latest-green.svg)](https://getcomposer.org/)
 
-![Image](https://github.com/user-attachments/assets/f6441b3e-97c0-485b-9cd8-9990d3c77247)
+![Image](https://github.com/user-attachments/assets/18313929-0851-4499-9c51-e9f974fef338)
 
 ## Overview
 
