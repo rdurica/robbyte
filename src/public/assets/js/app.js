@@ -41,14 +41,19 @@ function updateActiveNavLink() {
     let current = '';
     const scrollPos = window.scrollY + 100;
 
+    // Find the last section that we've scrolled past
     sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.offsetHeight;
+        const sectionTop = section.offsetTop - 150;
 
-        if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+        if (scrollPos >= sectionTop) {
             current = section.getAttribute('id');
         }
     });
+
+    // If we're at the very top, set home as active
+    if (window.scrollY < 100) {
+        current = 'home';
+    }
 
     navLinks.forEach(link => {
         link.classList.remove('active');
