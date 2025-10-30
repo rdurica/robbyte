@@ -147,10 +147,6 @@ body::before {
 .nav-menu.active {
     display: flex;
     flex-direction: column;
-    background:
-        radial-gradient(circle at 20% 20%, rgba(58, 166, 255, 0.05) 0%, transparent 50%),
-        radial-gradient(circle at 80% 80%, rgba(163, 113, 247, 0.05) 0%, transparent 50%),
-        radial-gradient(circle at 50% 50%, rgba(63, 185, 80, 0.03) 0%, transparent 50%);
 }
 
 .nav-link {
@@ -1091,8 +1087,11 @@ body::before {
         display: none;
         flex-direction: column;
         gap: var(--space-4);
-        background-color: rgba(var(--bg-secondary), 0.95);
-        backdrop-filter: blur(6px);
+        background: linear-gradient(135deg,
+            #0d1117 0%,
+            #161b22 50%,
+            #1a1f2e 100%
+        );
         position: absolute;
         top: 64px;
         right: 0.1rem;
@@ -1101,7 +1100,7 @@ body::before {
         padding: var(--space-4);
         border-radius: var(--radius);
         border: 1px solid rgb(var(--border-default));
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
         z-index: 100;
         transition: all 0.3s ease;
     }
