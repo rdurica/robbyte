@@ -204,12 +204,12 @@ body::before {
     height: 2px;
     background-color: rgb(var(--text-primary));
     margin: 2px 0;
-    transition: 0.3s;
+    transition: all 0.3s ease;
 }
 
 /* Hero Section */
 .hero {
-    padding: var(--space-16) 0 var(--space-12);
+    padding: var(--space-16) 0;
     position: relative;
 }
 
@@ -288,7 +288,7 @@ body::before {
 
 /* About Section */
 .about {
-    padding: var(--space-3) 0;
+    padding: var(--space-12) 0;
     position: relative;
 }
 
@@ -333,7 +333,7 @@ body::before {
 .tech-stack-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: var(--space-3);
+    gap: var(--space-4);
 }
 
 .tech-category {
@@ -754,7 +754,7 @@ body::before {
 
 /* Contact Section */
 .contact {
-    padding: var(--space-16) 0;
+    padding: var(--space-12) 0;
     position: relative;
 }
 
@@ -779,7 +779,8 @@ body::before {
 .contact-methods {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    margin-top: var(--space-16);
+    gap: var(--space-4);
+    margin-top: var(--space-8);
 }
 
 .contact-method {
@@ -1118,9 +1119,8 @@ body::before {
         display: none;
         flex-direction: column;
         gap: var(--space-3);
-        background: rgba(var(--bg-card), 0.95);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
+        background: rgb(var(--bg-secondary));
+        border: 1px solid rgb(var(--border-default));
         position: absolute;
         top: 64px;
         right: 0.1rem;
@@ -1128,9 +1128,8 @@ body::before {
         width: auto;
         padding: var(--space-4);
         border-radius: var(--radius-lg);
-        border: 1px solid rgba(var(--border-default), 0.5);
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6),
-                    0 0 40px rgba(var(--accent-blue), 0.1);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.8),
+                    0 0 40px rgba(var(--accent-blue), 0.15);
         z-index: 100;
         transition: all 0.3s ease;
     }
@@ -1144,11 +1143,20 @@ body::before {
         z-index: 110;
     }
 
+    .hero-content {
+        padding: var(--space-4);
+    }
+
+    .about-main,
+    .skills-section {
+        padding: var(--space-4);
+    }
+
     .hero-profile {
         flex-direction: column;
         text-align: center;
         gap: var(--space-4);
-        align-items: center; /* ← TADY PŘIDAT */
+        align-items: center;
     }
 
     .hero-name {
@@ -1172,7 +1180,7 @@ body::before {
     .about,
     .projects,
     .contact {
-        padding: var(--space-12) 0;
+        padding: var(--space-8) 0;
     }
 }
 
@@ -1182,7 +1190,11 @@ body::before {
     }
 
     .hero-bio {
-        font-size: 1.125rem;
+        font-size: 1rem;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
     }
 
     .hero-stats {
