@@ -6,4 +6,4 @@ services:
     volumes:
       - ./src:/app/src
     expose:
-      - 443
+      - 9000
