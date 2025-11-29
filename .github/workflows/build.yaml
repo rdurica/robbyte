@@ -36,5 +36,7 @@ jobs:
           tags: |
             ${{ env.APP_NAME }}:${{ github.ref_name }}
             ${{ env.APP_NAME }}:latest
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
+          cache-from: |
+            type=gha,scope=refs/heads/main
+            type=gha,scope=${{ github.ref }}
+          cache-to: type=gha,scope=refs/heads/main,mode=max
