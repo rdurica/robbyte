@@ -54,7 +54,9 @@ COPY build/prod/supervisord/start.sh /usr/local/bin/start.sh
 
 RUN chmod +x /usr/local/bin/start.sh && \
     addgroup robbyte nginx && \
+    mkdir -p /run/php && \
     mkdir -p /var/lib/nginx && \
+    chown -R robbyte:nginx /run/php && \
     chown -R robbyte:robbyte /var/log/nginx && \
     chown -R robbyte:robbyte /var/lib/nginx && \
     echo 'alias ll="ls -lah"' >> /home/robbyte/.bashrc && \
@@ -66,5 +68,7 @@ COPY --from=vendor /app/src /app/src
 
 RUN chown -R robbyte:robbyte /app/src
 USER robbyte
+
+EXPOSE 9000
 
 CMD ["/usr/local/bin/start.sh", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
