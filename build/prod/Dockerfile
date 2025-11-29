@@ -29,7 +29,7 @@ FROM base AS vendor
 ENV APP_ENV=prod
 ENV APP_DEBUG=0
 
-COPY src/composer.json src/composer.lock symfony.lock ./
+COPY src/composer.json src/composer.lock ./
 RUN composer install --no-dev --prefer-dist --no-progress --no-scripts --no-interaction --no-autoloader
 
 COPY src .
