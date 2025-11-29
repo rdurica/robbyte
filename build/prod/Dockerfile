@@ -43,8 +43,8 @@ ENV APP_DEBUG=0
 RUN adduser -D -u 1000 -s /bin/sh robbyte
 
 COPY build/prod/php/php.ini /usr/local/etc/php/php.ini
-COPY build/prod/php/php-fpm.conf /usr/local/etc/php-fpm.d/app.conf
-RUN rm /usr/local/etc/php-fpm.d/www.conf
+RUN rm -f /usr/local/etc/php-fpm.d/www.conf
+COPY build/prod/php/php-fpm.conf /usr/local/etc/php-fpm.d/www.conf
 
 RUN echo 'alias ll="ls -lah"' >> /home/robbyte/.bashrc && \
     echo 'alias c="composer"' >> /home/robbyte/.bashrc && \
