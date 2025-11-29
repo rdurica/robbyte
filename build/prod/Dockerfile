@@ -55,7 +55,7 @@ RUN chmod +x /usr/local/bin/start.sh && \
     addgroup robbyte nginx && \
     mkdir -p /var/lib/nginx && \
     mkdir -p var/cache var/log && \
-    chown -R robbyte:robbyte /app
+    chown -R robbyte:robbyte /app && \
     chown -R robbyte:robbyte /var/log/nginx && \
     chown -R robbyte:robbyte /var/lib/nginx && \
     echo 'alias ll="ls -lah"' >> /home/robbyte/.bashrc && \
