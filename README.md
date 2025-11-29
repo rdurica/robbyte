@@ -17,6 +17,11 @@ and clean software architecture.
 
 [robbyte.net](https://robbyte.net)
 
+## Production
+
+- Build the production image with dependencies baked in (no deploy-time composer install needed): `docker build -f build/prod/Dockerfile -t rdurica/robbyte:latest .` (ideally in CI, then push to your registry).
+- Start on the server with `docker compose -f compose.prod.yaml up -d` after providing `APP_SECRET` (and any other env vars) in your environment; the container listens on port 9000 for your Caddy reverse proxy—share the external Docker network with Caddy by setting `DOCKER_NETWORK` (defaults to `apps`; create it once if missing).
+
 ## Contributing
 
 If you would like to contribute to this project, please fork the repository and create a pull request. We welcome all
