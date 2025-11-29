@@ -45,8 +45,7 @@ ENV APP_DEBUG=0
 RUN adduser -D -u 1000 -s /bin/sh robbyte
 
 COPY build/prod/php/php.ini /usr/local/etc/php/php.ini
-RUN rm -f /usr/local/etc/php-fpm.d/www.conf
-COPY build/prod/php/php-fpm.conf /usr/local/etc/php-fpm.d/www.conf
+COPY build/prod/php/php-fpm.conf /usr/local/etc/php-fpm.d/app.conf
 COPY build/prod/nginx/nginx.conf /etc/nginx/nginx.conf
 COPY build/prod/nginx/default.conf /etc/nginx/http.d/default.conf
 COPY build/prod/supervisord/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
@@ -54,9 +53,7 @@ COPY build/prod/supervisord/start.sh /usr/local/bin/start.sh
 
 RUN chmod +x /usr/local/bin/start.sh && \
     addgroup robbyte nginx && \
-    mkdir -p /run/php && \
     mkdir -p /var/lib/nginx && \
-    chown -R robbyte:nginx /run/php && \
     chown -R robbyte:robbyte /var/log/nginx && \
     chown -R robbyte:robbyte /var/lib/nginx && \
     echo 'alias ll="ls -lah"' >> /home/robbyte/.bashrc && \

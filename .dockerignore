@@ -2,6 +2,7 @@
 .git
 .github
 build/dev/cert
+build/dev/certs
 build/dev/example.env
 build/prod/manifest-template.yaml
 manifest.yaml
