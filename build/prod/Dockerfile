@@ -6,6 +6,8 @@ ENV COMPOSER_ALLOW_SUPERUSER=1
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 RUN apk update && apk add --no-cache \
+    supervisor \
+    nginx \
     bash \
     curl \
     libpq-dev \
@@ -45,6 +47,10 @@ RUN adduser -D -u 1000 -s /bin/sh robbyte
 COPY build/prod/php/php.ini /usr/local/etc/php/php.ini
 RUN rm -f /usr/local/etc/php-fpm.d/www.conf
 COPY build/prod/php/php-fpm.conf /usr/local/etc/php-fpm.d/www.conf
+COPY build/prod/nginx/nginx.conf /etc/nginx/nginx.conf
+COPY build/prod/nginx/default.conf /etc/nginx/http.d/default.conf
+COPY build/prod/supervisord/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+COPY build/prod/supervisord/start.sh /usr/local/bin/start.sh
 
 RUN echo 'alias ll="ls -lah"' >> /home/robbyte/.bashrc && \
     echo 'alias c="composer"' >> /home/robbyte/.bashrc && \
@@ -56,6 +62,4 @@ COPY --from=vendor /app/src /app/src
 RUN chown -R robbyte:robbyte /app/src
 USER robbyte
 
-EXPOSE 9000
-
-CMD ["php-fpm", "-F"]
+CMD ["/usr/local/bin/start.sh", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
