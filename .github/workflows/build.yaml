@@ -39,4 +39,7 @@ jobs:
           cache-from: |
             type=gha,scope=refs/heads/main
             type=gha,scope=${{ github.ref }}
-          cache-to: type=gha,scope=refs/heads/main,mode=max
+            type=registry,ref=${{ env.APP_NAME }}:buildcache
+          cache-to: |
+            type=gha,scope=refs/heads/main,mode=max
+            type=registry,ref=${{ env.APP_NAME }}:buildcache,mode=max
