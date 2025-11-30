@@ -20,9 +20,9 @@ and clean software architecture.
 ## Production
 
 - Build the production image with dependencies baked in (no deploy-time composer install needed): `docker build -f build/prod/Dockerfile -t rdurica/robbyte:latest .` (ideally in CI, then push to your registry), or let Compose build it on the server.
-- Run behind your Caddy reverse proxy: the container only exposes plain HTTP on port `9000` (configurable via `APP_PORT`); terminate TLS in Caddy and proxy to `app:9000` on the shared Docker network.
+- The image listens on plain HTTP port `80`. Put it behind your reverse proxy and terminate TLS there; proxy traffic to port 80 on the container.
 - Required env: `APP_SECRET` (provide via shell or an env file copied from `build/prod/example.env`). Optional: `TRUSTED_PROXIES`, `TRUSTED_HOSTS`, `DOCKER_NETWORK` (defaults to `apps`).
-- Start on the server with `APP_SECRET=... docker compose -f compose.prod.yaml up -d` after creating the shared network once: `docker network create apps` (or set `DOCKER_NETWORK` to match your Caddy setup).
+- Example run: `APP_SECRET=... docker run -d -p 80:80 --name robbyte rdurica/robbyte:latest`.
 
 ## Contributing
 

@@ -10,7 +10,6 @@ src/log
 src/temp
 src/var
 src/vendor
-src/.env
 src/.env.*
 upload
 .gitignore

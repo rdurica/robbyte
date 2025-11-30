@@ -43,6 +43,7 @@ RUN curl -sS https://get.symfony.com/cli/installer | bash -s -- --install-dir=/u
 
 COPY build/dev/php/xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
 COPY build/dev/php/php.ini /usr/local/etc/php/php.ini
+RUN rm -f /usr/local/etc/php-fpm.d/www.conf
 COPY build/dev/php/php-fpm.conf /usr/local/etc/php-fpm.d/app.conf
 COPY build/dev/nginx/nginx.conf /etc/nginx/nginx.conf
 COPY build/dev/nginx/default.conf /etc/nginx/http.d/default.conf
