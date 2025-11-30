@@ -1,7 +1,11 @@
 #!/bin/bash
+set -euo pipefail
 
-# Start PHP-FPM in the background
-php-fpm &
+# Allow overriding the supervisor config path via `-c <path>`
+CONFIG="/etc/supervisor/conf.d/supervisord.conf"
+if [[ "${1:-}" == "-c" && -n "${2:-}" ]]; then
+  CONFIG="$2"
+  shift 2
+fi
 
-# Start Nginx in the foreground
-nginx -g 'daemon off;'
+exec /usr/bin/supervisord -c "$CONFIG" "$@"
