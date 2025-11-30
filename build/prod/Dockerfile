@@ -15,13 +15,9 @@ RUN apk update && apk add --no-cache \
     zlib-dev \
     libxml2-dev \
     icu-dev \
-    libjpeg-turbo-dev \
-    libpng-dev \
-    libwebp-dev \
     && rm -rf /var/cache/apk/*
 
-RUN docker-php-ext-configure gd --with-jpeg --with-webp && \
-    docker-php-ext-install gd pdo pdo_mysql mysqli pdo_pgsql pgsql zip intl opcache bcmath && \
+RUN docker-php-ext-install pdo pdo_mysql mysqli pdo_pgsql pgsql zip intl opcache bcmath && \
     curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 WORKDIR /app/src
@@ -45,8 +41,7 @@ ENV APP_DEBUG=0
 RUN adduser -D -u 1000 -s /bin/sh robbyte
 
 COPY build/prod/php/php.ini /usr/local/etc/php/php.ini
-RUN rm -f /usr/local/etc/php-fpm.d/www.conf
-COPY build/prod/php/php-fpm.conf /usr/local/etc/php-fpm.d/www.conf
+COPY build/prod/php/php-fpm.conf /usr/local/etc/php-fpm.d/app.conf
 COPY build/prod/nginx/nginx.conf /etc/nginx/nginx.conf
 COPY build/prod/nginx/default.conf /etc/nginx/http.d/default.conf
 COPY build/prod/supervisord/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
