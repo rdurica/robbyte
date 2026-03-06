@@ -2,21 +2,27 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}Robert Durica{% endblock %}</title>
+    <title>{% block title %}Robert Ďurica | Backend Engineer{% endblock %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Robert Ďurica – experienced PHP developer focused on backend development, API design, and performance optimization.">
-    <meta property="og:title" content="Robert Ďurica – PHP Backend Developer">
-    <meta property="og:image" content="/assets/img/favicon.ico">
+    <meta name="description" content="Robert Ďurica builds reliable PHP backends, scalable APIs, and production-ready systems.">
+    <meta property="og:title" content="Robert Ďurica | Backend Engineer">
+    <meta property="og:description" content="Backend engineer focused on scalable architecture, API performance, and reliable delivery.">
+    <meta property="og:image" content="/assets/img/me_emperor.png">
     <meta name="robots" content="index, follow">
-    <link rel="icon" href="/assets/img/favicon.ico" as="icon">
+    <link rel="icon" href="/assets/img/favicon.ico">
 
     {% block stylesheets %}
-        <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style" onload="this.rel='stylesheet'">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" as="style" onload="this.rel='stylesheet'">
+        <noscript>
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+        </noscript>
         <link rel="preload" href="{{ preload('/assets/css/app.css', {as: 'style'}) }}" as="style" onload="this.rel='stylesheet'">
     {% endblock %}
 
     {% block javascripts %}
-        <script rel="preload" src="{{ preload('/assets/js/app.js', {as: 'script'}) }}"></script>
+        <script src="{{ preload('/assets/js/app.js', {as: 'script'}) }}" defer></script>
     {% endblock %}
 </head>
 <body>

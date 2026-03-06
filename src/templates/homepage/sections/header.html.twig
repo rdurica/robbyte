@@ -1,23 +1,29 @@
 <header class="header">
     <div class="container">
         <nav class="nav">
-            <div class="nav-brand">
-                <span class="nav-logo">RD</span>
-                <span class="nav-separator">/</span>
-                <span class="nav-title">backend dev</span>
-            </div>
-            <div class="nav-menu">
+            <a class="nav-brand" href="#home" aria-label="Home">
+                <span class="nav-brand-mark">RD</span>
+                <span class="nav-brand-copy">
+                    <strong>Robert Ďurica</strong>
+                    <span>backend engineer</span>
+                </span>
+            </a>
+
+            <div class="nav-menu" id="main-menu">
                 <a href="#home" class="nav-link">Home</a>
                 <a href="#about" class="nav-link">About</a>
-                <a href="#skills" class="nav-link">Tech Stack</a>
                 <a href="#projects" class="nav-link">Projects</a>
-                <a href="#contact" class="nav-link">Contact</a>
+                <a href="#ai" class="nav-link">AI Dev</a>
             </div>
-            <button class="nav-toggle" aria-label="Toggle navigation">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
+
+            <div class="nav-actions">
+                <a class="nav-cta" href="#contact">Contact</a>
+                <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="main-menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
         </nav>
     </div>
 </header>

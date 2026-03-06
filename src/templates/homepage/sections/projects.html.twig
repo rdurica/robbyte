@@ -1,85 +1,134 @@
-<section id="projects" class="projects">
+<section id="projects" class="section-shell">
     <div class="container">
-        <h2 class="section-title">Featured Projects</h2>
-        <div class="about-content">
-            <p>These are selected personal projects I've built during my free time. While full-time work remains my main focus, I enjoy experimenting with new technologies and building useful tools and services.</p>
-        </div>
-        <div class="projects-grid">
-            {# PHP Starter kit #}
-            <article class="project-card">
-                <div class="project-header">
-                    <h3 class="project-title">PHP Starter Kit</h3>
-                    <div class="project-meta">
-                        <span class="project-lang project-lang-docker">Docker</span>
-                        <!--                            <span class="project-stars">⭐ 2</span>-->
-                    </div>
-                </div>
-                <p class="project-description">
-                    Lightweight and customizable PHP development environment using Docker, NGINX, and PHP-FPM. Includes Makefile tooling, SSL support for localhost, and Kubernetes manifest generator. Built to simplify modern PHP project setups.
-                </p>
-                <div class="project-topics">
-                    <span class="topic">docker</span>
-                    <span class="topic">kubernetes</span>
-                    <span class="topic">nginx</span>
-                    <span class="topic">php-fpm</span>
-                    <span class="topic">makefile</span>
-                    <span class="topic">ssl</span>
-                </div>
-                <div class="project-links">
-                    <a href="https://github.com/rdurica/php_starter_kit" class="project-link" target="_blank">View Code</a>
-                </div>
-            </article>
+        <div class="section-panel">
+            <div class="section-head" data-reveal>
+                <p class="section-label">Projects</p>
+                <h2 class="section-title">Selected projects.</h2>
+                <p class="section-intro">A few projects that reflect how I approach tooling, product delivery, and backend development.</p>
+            </div>
 
-            {# Oaza #}
-            <article class="project-card">
-                <div class="project-header">
-                    <h3 class="project-title">Salt Cave Website</h3>
-                    <div class="project-meta">
-                        <span class="project-lang project-lang-php">Nette</span>
-                        <span class="project-stars">⭐ Client Project</span>
+            <div class="projects-grid">
+                <!-- Featured Project -->
+                <article class="project-card featured" data-reveal>
+                    <div class="project-info">
+                        <span class="project-badge">Featured</span>
+                        <h3 class="project-title">PHP Starter Kit</h3>
+                        <p class="project-desc">Lightweight and customizable PHP development environment using Docker, NGINX, and PHP-FPM. Includes Makefile tooling, SSL support for localhost, and Kubernetes manifest generator. Built to simplify modern PHP project setups.</p>
+                        
+                        <ul class="project-tags">
+                            <li>Docker</li>
+                            <li>NGINX</li>
+                            <li>PHP-FPM</li>
+                            <li>Kubernetes</li>
+                            <li>Makefile</li>
+                            <li>SSL</li>
+                        </ul>
+                        
+                        <div class="project-links">
+                            <a href="https://github.com/rdurica/php_starter_kit" target="_blank" rel="noreferrer" class="project-link" data-magnetic>
+                                <span>View code</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
+                                </svg>
+                            </a>
+                        </div>
                     </div>
-                </div>
-                <p class="project-description">
-                    Commercial website for a local salt therapy center. Includes CMS-like interface, booking system, photo gallery, and contact form. One of my first full PHP projects — later slightly refactored and containerized with Docker.
-                </p>
-                <div class="project-topics">
-                    <span class="topic">php</span>
-                    <span class="topic">docker</span>
-                    <span class="topic">ci</span>
-                    <span class="topic">booking</span>
-                    <span class="topic">responsive</span>
-                </div>
-                <div class="project-links">
-                    <a href="https://github.com/rdurica/oaza" class="project-link" target="_blank">View Code</a>
-                    <a href="https://oazahb.cz" class="project-link" target="_blank">Live Site</a>
-                </div>
-            </article>
+                    <div class="project-visual">
+                        <div class="project-visual-mock">
+                            <pre><code>
+version: '3.8'
+services:
+  php:
+    build:
+      context: .docker/php
+    volumes:
+      - .:/var/www/html
+    networks:
+      - app-net
 
-            {# Oaza #}
-            <article class="project-card">
-                <div class="project-header">
-                    <h3 class="project-title">Chronox</h3>
-                    <div class="project-meta">
-                        <span class="project-lang project-lang-php">Symfony</span>
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "443:443"
+    volumes:
+      - .:/var/www/html
+      - .docker/nginx:/etc/nginx/conf.d
+      - .docker/ssl:/etc/ssl/local
+    depends_on:
+      - php
+    networks:
+      - app-net
+
+networks:
+  app-net:
+    driver: bridge
+                            </code></pre>
+                        </div>
                     </div>
-                </div>
-                <p class="project-description">
-                    Personal time tracking and task management API built with Symfony and API Platform.
-                    Supports task categorization, time logging, and RESTful endpoints for integration with frontend clients.
-                    Containerized with Docker for easy local development.
-                </p>
-                <div class="project-topics">
-                    <span class="topic">php</span>
-                    <span class="topic">symfony</span>
-                    <span class="topic">api-platform</span>
-                    <span class="topic">docker</span>
-                    <span class="topic">mariadb</span>
-                </div>
-                <div class="project-links">
-                    <a href="https://github.com/rdurica/chronox-backend" class="project-link" target="_blank">View Code</a>
-                    <a href="https://chronox-backend.robbyte.net/api" class="project-link" target="_blank">Live Site</a>
-                </div>
-            </article>
+                </article>
+
+                <!-- Project 2 -->
+                <article class="project-card glow-card" data-reveal>
+                    <div class="glow-card-content">
+                        <h3 class="project-title">Chronox</h3>
+                        <p class="project-desc">Personal time tracking and task management API built with Symfony and API Platform. Containerized with Docker.</p>
+                        
+                        <ul class="project-tags">
+                            <li>Symfony</li>
+                            <li>API Platform</li>
+                            <li>Docker</li>
+                            <li>MariaDB</li>
+                            <li>REST</li>
+                        </ul>
+                        
+                        <div class="project-links">
+                            <a href="https://github.com/rdurica/chronox-backend" target="_blank" rel="noreferrer" class="project-link" data-magnetic>
+                                <span>Code</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
+                                </svg>
+                            </a>
+                            <a href="https://chronox-backend.robbyte.net/api" target="_blank" rel="noreferrer" class="project-link" data-magnetic>
+                                <span>Live API</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Project 3 -->
+                <article class="project-card glow-card" data-reveal>
+                    <div class="glow-card-content">
+                        <h3 class="project-title">Salt Cave Website</h3>
+                        <p class="project-desc">Commercial website for a local salt therapy center. Includes CMS-like interface, booking system, and photo gallery.</p>
+                        
+                        <ul class="project-tags">
+                            <li>PHP</li>
+                            <li>Nette</li>
+                            <li>Booking</li>
+                            <li>CMS</li>
+                            <li>Docker</li>
+                        </ul>
+                        
+                        <div class="project-links">
+                            <a href="https://github.com/rdurica/oaza" target="_blank" rel="noreferrer" class="project-link" data-magnetic>
+                                <span>Code</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
+                                </svg>
+                            </a>
+                            <a href="https://oazahb.cz" target="_blank" rel="noreferrer" class="project-link" data-magnetic>
+                                <span>Live site</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+            </div>
         </div>
     </div>
 </section>

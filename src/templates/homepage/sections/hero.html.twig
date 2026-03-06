@@ -1,26 +1,47 @@
 <section id="home" class="hero">
     <div class="container">
-        <div class="hero-content">
-            <div class="hero-profile">
-                <img src="{{ preload('/assets/img/profile_photo.jpeg', {as: 'image'}) }}" as="image" alt="Profile" class="hero-avatar">
-                <div class="hero-text">
+        <div class="hero-stage">
+            <div class="hero-copy" data-reveal>
+                <div class="hero-header">
+                    <p class="hero-overline">Backend Engineer</p>
                     <h1 class="hero-name">Robert Ďurica</h1>
-                    <p class="hero-bio">PHP Backend Developer building robust web applications and APIs</p>
-                    <div class="hero-stats">
-                        <div class="stat">
-                            <span class="stat-number">5+</span>
-                            <span class="stat-label">Years</span>
+                </div>
+                
+                <p class="hero-dek">Building scalable APIs and robust backend systems in production.</p>
+                <p class="hero-lead">Focused on clear architecture, performance, and reliable delivery. Full-time at Sportisimo.</p>
+
+                <div class="hero-actions">
+                    <a href="#projects" class="btn btn-primary" data-magnetic>View projects</a>
+                    <a href="#contact" class="btn btn-secondary" data-magnetic>Get in touch</a>
+                </div>
+
+                <div class="hero-stats">
+                    <div class="stat-card glow-card">
+                        <div class="glow-card-content">
+                            <span class="stat-val">5+</span>
+                            <span class="stat-label">Years of Experience</span>
                         </div>
-                        <div class="stat">
-                            <span class="stat-number">100%</span>
+                    </div>
+                    <div class="stat-card glow-card">
+                        <div class="glow-card-content">
+                            <span class="stat-val">100%</span>
                             <span class="stat-label">Reliability</span>
                         </div>
-                        <div class="stat">
-                            <span class="stat-number">10k+</span>
+                    </div>
+                    <div class="stat-card glow-card">
+                        <div class="glow-card-content">
+                            <span class="stat-val">10k+</span>
                             <span class="stat-label">Lines Refactored</span>
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <div class="hero-portrait" data-reveal>
+                <picture>
+                    <source srcset="{{ preload('/assets/img/me-emperor-640.webp', {as: 'image'}) }}" type="image/webp">
+                    <img src="{{ preload('/assets/img/me_emperor.png', {as: 'image'}) }}" alt="Robert Ďurica" loading="eager">
+                </picture>
             </div>
         </div>
     </div>

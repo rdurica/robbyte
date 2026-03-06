@@ -41,7 +41,8 @@ ENV APP_DEBUG=0
 RUN adduser -D -u 1000 -s /bin/sh robbyte
 
 COPY build/prod/php/php.ini /usr/local/etc/php/php.ini
-COPY build/prod/php/php-fpm.conf /usr/local/etc/php-fpm.d/app.conf
+RUN rm -f /usr/local/etc/php-fpm.d/www.conf
+COPY build/prod/php/php-fpm.conf /usr/local/etc/php-fpm.d/zz-app.conf
 COPY build/prod/nginx/nginx.conf /etc/nginx/nginx.conf
 COPY build/prod/nginx/default.conf /etc/nginx/http.d/default.conf
 COPY build/prod/supervisord/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
