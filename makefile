@@ -1,20 +1,23 @@
 # ENV
 DOCKER_COMP = docker compose
 PHP      = $(PHP_CONT) php
-PHP_CONT = $(DOCKER_COMP) exec php-fpm
+PHP_CONT = $(DOCKER_COMP) exec --user=robbyte portfolio
 
 ## Initialize containers
 init:
-	if [ ! -f build/dev/certs/tls.crt ]; then openssl req -x509 -newkey rsa:4096 -keyout build/dev/certs/tls.key -out build/dev/certs/tls.crt -days 3650 -nodes \
-		  -config build/dev/certs/ssl.conf; fi
-		  docker network inspect apps >/dev/null 2>&1 || docker network create apps;
-		  @$(DOCKER_COMP) build --pull --no-cache;
-		  @$(DOCKER_COMP) up --detach; \
-  		  mv build/dev/.github .github;
+	rm -f src/.gitkeep
+	docker network inspect apps >/dev/null 2>&1 || docker network create apps;
+	@$(DOCKER_COMP) build --pull --no-cache;
+	@$(DOCKER_COMP) up --detach;
 
 ## Docker
-rebuild: ## Builds the Docker images
+rebuild: ## Builds the Docker images (no cache)
+	@$(DOCKER_COMP) build --pull --no-cache
+	@$(DOCKER_COMP) up --detach
+
+reload: ## Builds the Docker images
 	@$(DOCKER_COMP) build
+	@$(DOCKER_COMP) up --detach
 
 up: ## Start the docker hub in detached mode (no logs)
 	@$(DOCKER_COMP) up --detach
@@ -25,20 +28,28 @@ down: ## Stop the docker hub
 logs: ## Show live logs
 	@$(DOCKER_COMP) logs --tail=0 --follow
 
-sh:
+php: ## Open shell in portfolio container
 	@$(PHP_CONT) bash
 
-## Utils
-cert:
-	openssl req -x509 -newkey rsa:4096 -keyout build/dev/certs/tls.key -out build/dev/certs/tls.crt -days 3650 -nodes -config build/dev/certs/ssl.conf
+setup-githooks:
+	git config core.hooksPath .githooks
+	chmod +x .githooks/pre-commit
 
-## Manifest for k8s
-TEMPLATE = build/prod/manifest-template.yaml
-OUTPUT_DIR = .
-.PHONY: manifest clean
-
-manifest:
-	@echo "Generating manifest for $(app_name) ..."
-	cp $(TEMPLATE) $(OUTPUT_DIR)/manifest.yaml && \
-	sed -i "s/{{APP_NAME}}/$(app_name)/g" $(OUTPUT_DIR)/manifest.yaml && \
-	sed -i "s|{{APP_SECRET}}|$(shell openssl rand -base64 32)|g" $(OUTPUT_DIR)/manifest.yaml
+trust-cert: ## Trust Caddy's local CA certificate (Fedora/Debian)
+	@echo "Extracting Caddy root CA certificate..."
+	@$(DOCKER_COMP) exec portfolio cat /data/caddy/pki/authorities/local/root.crt > /tmp/caddy-root.crt 2>/dev/null || (echo "Error: Failed to extract certificate. Is portfolio running?" && exit 1)
+	@if command -v update-ca-certificates >/dev/null 2>&1; then \
+		echo "Detected Debian/Ubuntu-based system..."; \
+		sudo cp /tmp/caddy-root.crt /usr/local/share/ca-certificates/caddy-root.crt; \
+		sudo update-ca-certificates; \
+	elif command -v update-ca-trust >/dev/null 2>&1; then \
+		echo "Detected Fedora/RHEL-based system..."; \
+		sudo cp /tmp/caddy-root.crt /etc/pki/ca-trust/source/anchors/caddy-root.crt; \
+		sudo update-ca-trust extract; \
+	else \
+		echo "Error: Could not detect certificate management tool."; \
+		echo "Please manually install /tmp/caddy-root.crt into your system trust store."; \
+		exit 1; \
+	fi
+	@echo "Certificate trusted successfully. Restart Chrome: chrome://restart"
+	@rm -f /tmp/caddy-root.crt

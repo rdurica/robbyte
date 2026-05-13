@@ -1,20 +1,32 @@
 services:
-  php-fpm:
+  portfolio:
+    container_name: portfolio
     build:
       context: .
       dockerfile: build/dev/Dockerfile
-    env_file: ./build/dev/example.env
     volumes:
-      - ./src:/app/src
-      - ./build/dev/certs:/etc/nginx/certs
+      - .:/app
+      - node_modules:/app/src/node_modules
+      - ./build/dev/Caddyfile:/etc/caddy/Caddyfile:ro
+      - ./build/dev/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini:ro
+      - ./build/dev/php.ini:/usr/local/etc/php/conf.d/99-timezone.ini:ro
+      - caddy_data:/data
+      - caddy_config:/config
     ports:
-      - 443:443
       - 80:80
+      - 443:443
+      - 443:443/udp
     extra_hosts:
       - host.docker.internal:host-gateway
     networks:
       - apps
-
+    environment:
+      - PHP_IDE_CONFIG=serverName=localhost
+      - TZ=Europe/Prague
+volumes:
+  node_modules:
+  caddy_data:
+  caddy_config:
 networks:
   apps:
     external: true
