@@ -80,6 +80,11 @@ img {
 
 .main {
     overflow: clip;
+    background:
+        linear-gradient(90deg, rgb(0 0 0 / 0.5), transparent 24%, transparent 76%, rgb(0 0 0 / 0.44)),
+        radial-gradient(circle at 18% 22%, rgb(31 132 255 / 0.07), transparent 30rem),
+        radial-gradient(circle at 84% 58%, rgb(31 132 255 / 0.05), transparent 34rem),
+        linear-gradient(180deg, rgb(1 6 14), rgb(2 8 18) 44%, rgb(1 5 12));
 }
 
 /* Alert / Flash messages */
@@ -212,18 +217,6 @@ img {
         radial-gradient(circle at 84% 62%, rgb(72 171 255 / 0.36) 0 1px, transparent 2px),
         linear-gradient(115deg, transparent 0 58%, rgb(24 128 255 / 0.22) 58% 58.15%, transparent 58.15% 100%),
         linear-gradient(135deg, transparent 0 78%, rgb(28 126 255 / 0.2) 78% 78.16%, transparent 78.16% 100%);
-    animation: light-beams 7s ease-in-out infinite alternate;
-}
-
-@keyframes light-beams {
-    0% {
-        opacity: 0.4;
-        transform: scale(1) rotate(0deg);
-    }
-    100% {
-        opacity: 0.8;
-        transform: scale(1.05) rotate(1deg);
-    }
 }
 
 .hero-stage {
@@ -452,22 +445,6 @@ img {
         0 0 18px rgb(32 145 255 / 0.42),
         0 0 44px rgb(32 145 255 / 0.16),
         inset 0 0 24px rgb(42 150 255 / 0.1);
-    animation: btn-pulse 3s ease-in-out infinite;
-}
-
-@keyframes btn-pulse {
-    0%, 100% {
-        box-shadow:
-            0 0 18px rgb(32 145 255 / 0.38),
-            0 0 44px rgb(32 145 255 / 0.14),
-            inset 0 0 24px rgb(42 150 255 / 0.08);
-    }
-    50% {
-        box-shadow:
-            0 0 26px rgb(32 145 255 / 0.52),
-            0 0 64px rgb(32 145 255 / 0.22),
-            inset 0 0 34px rgb(42 150 255 / 0.12);
-    }
 }
 
 .btn-primary:hover {
@@ -526,13 +503,13 @@ img {
 }
 
 .hero-portrait img {
-    width: min(68rem, 150%);
+    width: min(76rem, 168%);
     height: auto;
-    max-height: 96svh;
+    max-height: 104svh;
     object-fit: contain;
     object-position: right bottom;
     display: block;
-    margin-right: -9rem;
+    margin-right: -15rem;
     margin-bottom: -4.7rem;
     filter:
         drop-shadow(-5px 0 5px rgb(33 146 255 / 0.12))
@@ -541,73 +518,21 @@ img {
 
 /* Base Sections */
 .section-shell {
-    padding: 8rem 0;
+    padding: 7rem 0;
     position: relative;
     overflow: hidden;
-    background:
-        linear-gradient(90deg, rgb(0 0 0 / 0.58), transparent 24%, transparent 76%, rgb(0 0 0 / 0.5)),
-        radial-gradient(circle at 18% 8%, rgb(31 132 255 / 0.08), transparent 24rem),
-        radial-gradient(circle at 84% 36%, rgb(31 132 255 / 0.06), transparent 28rem),
-        linear-gradient(180deg, rgb(1 6 14), rgb(2 9 20));
-    border-top: 1px solid rgb(36 132 255 / 0.1);
+    background: transparent;
+    border-top: 0;
+}
+
+.section-shell + .section-shell {
+    padding-top: 4rem;
 }
 
 .section-shell::before,
 .section-shell::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-}
-
-.section-shell::before {
-    background:
-        linear-gradient(90deg, rgb(37 128 255 / 0.025) 0 1px, transparent 1px 100%),
-        linear-gradient(0deg, rgb(37 128 255 / 0.02) 0 1px, transparent 1px 100%);
-    background-size: 88px 88px;
-    opacity: 0.72;
-}
-
-.section-shell::after {
-    opacity: 0.85;
-}
-
-#about::after {
-    background:
-        linear-gradient(90deg, rgb(31 132 255 / 0.28), rgb(31 132 255 / 0.28)) 0 5.5rem / 8rem 1px no-repeat,
-        linear-gradient(180deg, rgb(31 132 255 / 0.22), rgb(31 132 255 / 0.22)) 8rem 5.5rem / 1px 6rem no-repeat,
-        radial-gradient(circle at 8rem 5.5rem, transparent 0 3px, rgb(33 130 255 / 0.58) 3px 4px, transparent 4px),
-        linear-gradient(135deg, transparent 0 82%, rgb(33 130 255 / 0.08) 82% 82.12%, transparent 82.12% 100%);
-}
-
-#projects::after {
-    background:
-        linear-gradient(90deg, rgb(31 132 255 / 0.22), rgb(31 132 255 / 0.22)) calc(100% - 12rem) 8rem / 12rem 1px no-repeat,
-        linear-gradient(180deg, rgb(31 132 255 / 0.18), rgb(31 132 255 / 0.18)) calc(100% - 12rem) 8rem / 1px 9rem no-repeat,
-        linear-gradient(90deg, rgb(31 132 255 / 0.16), rgb(31 132 255 / 0.16)) calc(100% - 18rem) 17rem / 6rem 1px no-repeat,
-        radial-gradient(circle at calc(100% - 12rem) 8rem, transparent 0 3px, rgb(33 130 255 / 0.52) 3px 4px, transparent 4px),
-        radial-gradient(circle at calc(100% - 18rem) 17rem, transparent 0 3px, rgb(33 130 255 / 0.42) 3px 4px, transparent 4px),
-        linear-gradient(26deg, transparent 0 18%, rgb(33 130 255 / 0.08) 18% 18.14%, transparent 18.14% 100%);
-}
-
-#ai::after {
-    background:
-        linear-gradient(90deg, rgb(31 132 255 / 0.22), rgb(31 132 255 / 0.22)) 7rem calc(100% - 14rem) / 10rem 1px no-repeat,
-        linear-gradient(180deg, rgb(31 132 255 / 0.2), rgb(31 132 255 / 0.2)) 17rem calc(100% - 20rem) / 1px 6rem no-repeat,
-        linear-gradient(90deg, rgb(31 132 255 / 0.18), rgb(31 132 255 / 0.18)) 17rem calc(100% - 20rem) / 8rem 1px no-repeat,
-        radial-gradient(circle at 7rem calc(100% - 14rem), transparent 0 3px, rgb(33 130 255 / 0.5) 3px 4px, transparent 4px),
-        radial-gradient(circle at 25rem calc(100% - 20rem), transparent 0 3px, rgb(33 130 255 / 0.4) 3px 4px, transparent 4px),
-        linear-gradient(145deg, transparent 0 72%, rgb(33 130 255 / 0.07) 72% 72.14%, transparent 72.14% 100%);
-}
-
-#contact::after {
-    background:
-        linear-gradient(90deg, rgb(31 132 255 / 0.2), rgb(31 132 255 / 0.2)) 0 calc(100% - 7rem) / 15rem 1px no-repeat,
-        linear-gradient(180deg, rgb(31 132 255 / 0.18), rgb(31 132 255 / 0.18)) 15rem calc(100% - 13rem) / 1px 6rem no-repeat,
-        linear-gradient(90deg, rgb(31 132 255 / 0.16), rgb(31 132 255 / 0.16)) calc(100% - 9rem) 6rem / 9rem 1px no-repeat,
-        radial-gradient(circle at 15rem calc(100% - 7rem), transparent 0 3px, rgb(33 130 255 / 0.46) 3px 4px, transparent 4px),
-        radial-gradient(circle at calc(100% - 9rem) 6rem, transparent 0 3px, rgb(33 130 255 / 0.42) 3px 4px, transparent 4px),
-        linear-gradient(35deg, transparent 0 9%, rgb(33 130 255 / 0.07) 9% 9.12%, transparent 9.12% 100%);
+    content: none;
+    display: none;
 }
 
 .section-panel {
@@ -660,75 +585,13 @@ img {
     font-weight: 400;
 }
 
-/* Card Hover Glow Pattern */
-.glow-card {
-    --panel-shape: polygon(4% 0, 100% 0, 100% 88%, 96% 100%, 0 100%, 0 12%);
-    --panel-border: rgb(42 150 255 / 0.28);
-    position: relative;
-    background:
-        linear-gradient(180deg, rgb(8 20 38 / 0.74), rgb(3 10 23 / 0.64)),
-        linear-gradient(135deg, rgb(42 150 255 / 0.1), transparent 36%, transparent 70%, rgb(42 150 255 / 0.08));
-    border: 0;
-    border-radius: 8px;
-    clip-path: var(--panel-shape);
-    overflow: hidden;
-    transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.glow-card::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(
-        500px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-        rgb(42 150 255 / 0.11),
-        transparent 40%
-    );
-    opacity: 0;
-    transition: opacity 0.3s;
-    pointer-events: none;
-    z-index: 1;
-}
-
-.glow-card:hover {
-    --panel-border: rgb(92 184 255 / 0.64);
-    transform: translateY(-2px);
-    box-shadow: 0 16px 38px rgb(0 0 0 / 0.26), 0 0 28px rgb(32 145 255 / 0.08);
-}
-
-.glow-card:hover::before {
-    opacity: 1;
-}
-
-.glow-card::after,
 .about-timeline-container::after,
 .tech-stack::after,
 .project-card::after,
 .contact-layout::after,
 .social-card::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: 4;
-    pointer-events: none;
-    background: var(--panel-border);
-    clip-path: var(--panel-shape);
-    padding: 1px;
-    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-}
-
-.glow-card-content {
-    position: relative;
-    z-index: 2;
-    padding: 1.5rem;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
+    content: none;
+    display: none;
 }
 
 /* About Section */
@@ -748,13 +611,14 @@ img {
 
 .focus-areas {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 2rem;
 }
 
 .focus-area {
-    padding: 1.5rem;
-    min-height: 10rem;
+    padding: 1.15rem 0 0;
+    min-height: auto;
+    border-top: 1px solid rgb(255 255 255 / 0.08);
 }
 
 .focus-area h3 {
@@ -772,25 +636,16 @@ img {
 
 /* Timeline */
 .about-timeline-container {
-    --panel-shape: polygon(3% 0, 100% 0, 100% 92%, 97% 100%, 0 100%, 0 8%);
-    --panel-border: rgb(42 150 255 / 0.28);
     position: relative;
-    background:
-        linear-gradient(180deg, rgb(8 20 38 / 0.76), rgb(3 10 23 / 0.64)),
-        linear-gradient(135deg, rgb(42 150 255 / 0.09), transparent 40%);
-    border: 0;
-    border-radius: 8px;
-    clip-path: var(--panel-shape);
-    padding: 2rem;
-    box-shadow: inset 0 0 32px rgb(42 150 255 / 0.04);
+    padding: 0.4rem 0 0;
 }
 
 .timeline {
     display: flex;
     flex-direction: column;
-    gap: 1.75rem;
+    gap: 3rem;
     position: relative;
-    padding-left: 1.5rem;
+    padding-left: 2rem;
 }
 
 .timeline::before {
@@ -800,31 +655,31 @@ img {
     top: 0.5rem;
     bottom: 0.5rem;
     width: 1px;
-    background: linear-gradient(to bottom, rgb(var(--accent-400) / 0.5), rgb(var(--accent-500) / 0.1), transparent);
+    background: linear-gradient(to bottom, rgb(var(--accent-400) / 0.55), rgb(var(--accent-500) / 0.16), transparent);
 }
 
 .timeline-item {
     position: relative;
-    padding-left: 0.5rem;
+    padding-left: 0.25rem;
 }
 
 .timeline-item::before {
     content: "";
     position: absolute;
-    left: -1.6rem;
+    left: -2.25rem;
     top: 0.35rem;
-    width: 7px;
-    height: 7px;
+    width: 9px;
+    height: 9px;
     border-radius: 50%;
     background: rgb(var(--bg-950));
     border: 2px solid rgb(var(--accent-400));
     box-shadow: 0 0 8px rgb(var(--accent-500) / 0.3);
-    transition: background 0.3s ease, box-shadow 0.3s ease;
+    transition: none;
 }
 
 .timeline-item:hover::before {
-    background: rgb(var(--accent-400));
-    box-shadow: 0 0 16px rgb(var(--accent-500) / 0.5);
+    background: rgb(var(--bg-950));
+    box-shadow: 0 0 8px rgb(var(--accent-500) / 0.3);
 }
 
 .timeline-year {
@@ -849,17 +704,12 @@ img {
 }
 
 .tech-stack {
-    --panel-shape: polygon(2% 0, 100% 0, 100% 78%, 98% 100%, 0 100%, 0 22%);
-    --panel-border: rgb(42 150 255 / 0.24);
     position: relative;
     margin-top: 5rem;
-    padding: 2.5rem;
-    background:
-        linear-gradient(180deg, rgb(8 20 38 / 0.68), rgb(3 10 23 / 0.54)),
-        linear-gradient(90deg, rgb(42 150 255 / 0.08), transparent 30%, transparent 70%, rgb(42 150 255 / 0.06));
-    border: 0;
-    border-radius: 8px;
-    clip-path: var(--panel-shape);
+    padding: 0;
+    background: transparent;
+    border-radius: 0;
+    clip-path: none;
 }
 
 .tech-label {
@@ -878,23 +728,20 @@ img {
 }
 
 .tech-list li {
-    padding: 0.5rem 1rem;
-    background: rgb(2 9 22 / 0.72);
-    border: 1px solid rgb(42 150 255 / 0.18);
-    border-radius: var(--radius-sm);
+    padding: 0.25rem 0;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
     font-size: 0.85rem;
     font-weight: 500;
     color: rgb(174 193 220);
-    transition: all 0.2s ease;
+    transition: color 0.2s ease;
     font-family: var(--font-mono);
     font-size: 0.8rem;
 }
 
 .tech-list li:hover {
-    transform: translateY(-2px);
-    border-color: rgb(var(--accent-400) / 0.4);
     color: rgb(var(--accent-300));
-    box-shadow: 0 4px 12px rgb(0 0 0 / 0.2);
 }
 
 /* Projects Section */
@@ -905,55 +752,39 @@ img {
 }
 
 .project-card {
-    --panel-shape: polygon(3% 0, 100% 0, 100% 90%, 97% 100%, 0 100%, 0 10%);
-    --panel-border: rgb(42 150 255 / 0.28);
     display: flex;
     flex-direction: column;
-    background:
-        linear-gradient(180deg, rgb(8 20 38 / 0.76), rgb(3 10 23 / 0.64)),
-        linear-gradient(135deg, rgb(42 150 255 / 0.1), transparent 38%, transparent 74%, rgb(42 150 255 / 0.08));
-    border: 0;
-    border-radius: 8px;
-    clip-path: var(--panel-shape);
-    padding: 2rem;
-    transition: all 0.3s ease;
+    background: transparent;
+    border-top: 1px solid rgb(255 255 255 / 0.09);
+    border-radius: 0;
+    clip-path: none;
+    padding: 2rem 0 0;
+    transition: border-color 0.2s ease;
 }
 
 .project-card:hover {
-    --panel-border: rgb(92 184 255 / 0.64);
-    transform: translateY(-4px);
-    box-shadow: 0 22px 44px rgb(0 0 0 / 0.32), 0 0 34px rgb(32 145 255 / 0.08);
+    border-color: rgb(96 165 250 / 0.28);
 }
 
 .project-card.featured {
-    --panel-shape: polygon(2% 0, 100% 0, 100% 92%, 98% 100%, 0 100%, 0 8%);
-    --panel-border: rgb(42 150 255 / 0.32);
     grid-column: 1 / -1;
     display: grid;
     grid-template-columns: 1.2fr 1fr;
     gap: 3rem;
-    padding: 2.5rem;
-    background:
-        linear-gradient(180deg, rgb(8 20 38 / 0.82), rgb(3 10 23 / 0.68)),
-        linear-gradient(135deg, rgb(42 150 255 / 0.12), transparent 42%);
-    border: 0;
+    padding: 2rem 0 0;
+    background: transparent;
+    border-top: 1px solid rgb(255 255 255 / 0.1);
     position: relative;
     overflow: hidden;
 }
 
 .project-card.featured::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgb(var(--accent-400) / 0.5), transparent);
+    content: none;
+    display: none;
 }
 
 .project-card.featured:hover {
-    --panel-border: rgb(92 184 255 / 0.66);
-    box-shadow: 0 20px 40px rgb(0 0 0 / 0.3), 0 0 60px rgb(var(--accent-500) / 0.1);
+    border-color: rgb(96 165 250 / 0.32);
 }
 
 .project-info {
@@ -964,18 +795,18 @@ img {
 
 .project-badge {
     display: inline-block;
-    padding: 0.35rem 0.9rem;
-    background: rgb(42 150 255 / 0.09);
+    padding: 0;
+    background: transparent;
     color: rgb(151 216 255);
-    border: 1px solid rgb(42 150 255 / 0.3);
-    border-radius: 4px;
+    border: 0;
+    border-radius: 0;
     font-size: 0.75rem;
     font-weight: 600;
     font-family: var(--font-mono);
     text-transform: uppercase;
     margin-bottom: 1rem;
     align-self: flex-start;
-    box-shadow: 0 0 12px rgb(var(--accent-500) / 0.1);
+    box-shadow: none;
 }
 
 .project-title {
@@ -1009,18 +840,17 @@ img {
 }
 
 .project-tags li {
-    padding: 0.25rem 0.7rem;
-    background: rgb(2 9 22 / 0.74);
-    border: 1px solid rgb(42 150 255 / 0.16);
-    border-radius: 4px;
+    padding: 0;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
     font-size: 0.75rem;
     font-family: var(--font-mono);
     color: rgb(var(--text-300));
-    transition: all 0.2s ease;
+    transition: color 0.2s ease;
 }
 
 .project-tags li:hover {
-    border-color: rgb(var(--accent-400) / 0.3);
     color: rgb(var(--accent-300));
 }
 
@@ -1093,30 +923,21 @@ img {
 
 /* Contact Section */
 .contact-layout {
-    --panel-shape: polygon(2% 0, 100% 0, 100% 86%, 98% 100%, 0 100%, 0 14%);
-    --panel-border: rgb(42 150 255 / 0.32);
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 4rem;
-    background:
-        linear-gradient(180deg, rgb(8 20 38 / 0.78), rgb(3 10 23 / 0.68)),
-        linear-gradient(135deg, rgb(42 150 255 / 0.12), transparent 40%);
-    border: 0;
-    border-radius: 8px;
-    clip-path: var(--panel-shape);
-    padding: 3.5rem;
+    background: transparent;
+    border-top: 1px solid rgb(255 255 255 / 0.1);
+    border-radius: 0;
+    clip-path: none;
+    padding: 3.5rem 0 0;
     position: relative;
     overflow: hidden;
 }
 
 .contact-layout::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent 10%, rgb(92 184 255 / 0.58) 50%, transparent 90%);
+    content: none;
+    display: none;
 }
 
 .contact-info h2 {
@@ -1145,43 +966,31 @@ img {
 }
 
 .social-card {
-    --panel-shape: polygon(3% 0, 100% 0, 100% 78%, 97% 100%, 0 100%, 0 22%);
-    --panel-border: rgb(42 150 255 / 0.24);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 1.25rem 1.5rem;
-    background: rgb(2 9 22 / 0.68);
-    border: 0;
-    border-radius: 6px;
-    clip-path: var(--panel-shape);
+    padding: 1.15rem 0;
+    background: transparent;
+    border-top: 1px solid rgb(255 255 255 / 0.08);
+    border-radius: 0;
+    clip-path: none;
     text-decoration: none;
-    transition: all 0.25s ease;
+    transition: border-color 0.2s ease;
     position: relative;
     overflow: hidden;
 }
 
 .social-card::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, rgb(var(--accent-500) / 0.05), transparent);
-    opacity: 0;
-    transition: opacity 0.25s ease;
+    content: none;
+    display: none;
 }
 
 .social-card:hover {
-    --panel-border: rgb(var(--accent-400) / 0.42);
-    transform: translateX(6px);
-    background: rgb(var(--surface-hover));
-    box-shadow: -4px 0 20px rgb(var(--accent-500) / 0.08);
+    border-color: rgb(96 165 250 / 0.28);
 }
 
 .social-card:hover::before {
-    opacity: 1;
+    opacity: 0;
 }
 
 .social-details {
@@ -1228,18 +1037,6 @@ img {
     font-size: 0.85rem;
 }
 
-/* Animations */
-.js [data-reveal] {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.js [data-reveal].is-visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
 /* Media Queries */
 @media (max-width: 1024px) {
     .hero {
@@ -1269,16 +1066,16 @@ img {
     }
 
     .hero-portrait {
-        min-height: 32rem;
-        max-width: 36rem;
-        margin: 0 auto;
+        min-height: 35rem;
+        max-width: 43rem;
+        margin: 0 -3rem 0 auto;
         align-self: auto;
-        justify-content: center;
+        justify-content: flex-end;
     }
 
     .hero-portrait img {
-        width: min(35rem, 100%);
-        margin-right: 0;
+        width: min(43rem, 118%);
+        margin-right: -3.5rem;
         margin-bottom: -2.5rem;
     }
 
@@ -1336,6 +1133,8 @@ img {
 
     .hero {
         padding-top: 3.5rem;
+        min-height: 100svh;
+        align-items: flex-start;
     }
 
     .hero::after {
@@ -1346,6 +1145,12 @@ img {
 
     .hero-bg-effects {
         background-size: 64px 64px, 64px 64px, auto, auto;
+    }
+
+    .hero-stage {
+        min-height: calc(100svh - 3.5rem);
+        overflow: hidden;
+        padding-bottom: 3rem;
     }
 
     .hero-overline {
@@ -1361,9 +1166,7 @@ img {
     }
 
     .hero-portrait {
-        min-height: 27rem;
-        max-width: 28rem;
-        margin: 0 auto;
+        display: none;
     }
 
     .hero-stats {
@@ -1445,8 +1248,4 @@ img {
         font-size: 0.74rem;
     }
 
-    .hero-portrait {
-        min-height: 20rem;
-        margin-top: -1.25rem;
-    }
 }
