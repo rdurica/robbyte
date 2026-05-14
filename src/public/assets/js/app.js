@@ -6,6 +6,7 @@ const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)
 
 document.addEventListener('DOMContentLoaded', () => {
     initializeNavigation();
+    initializePageScrollTop();
 });
 
 function initializeNavigation() {
@@ -109,4 +110,25 @@ function getScrollOffset() {
     }
 
     return nav.offsetHeight + 18;
+}
+
+function initializePageScrollTop() {
+    const scrollTopLink = document.querySelector('.page-scroll-top');
+
+    if (!scrollTopLink) {
+        return;
+    }
+
+    const updateScrollTopLink = () => {
+        const threshold = Math.max(160, window.innerHeight * 0.55);
+        const showScrollTop = window.scrollY > threshold;
+
+        scrollTopLink.classList.toggle('is-visible', showScrollTop);
+        scrollTopLink.setAttribute('aria-hidden', String(!showScrollTop));
+        scrollTopLink.setAttribute('tabindex', showScrollTop ? '0' : '-1');
+    };
+
+    window.addEventListener('scroll', updateScrollTopLink, { passive: true });
+    window.addEventListener('resize', updateScrollTopLink);
+    updateScrollTopLink();
 }
