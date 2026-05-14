@@ -14,7 +14,7 @@
                         <span class="project-badge">Featured</span>
                         <h3 class="project-title">PHP Starter Kit</h3>
                         <p class="project-desc">Lightweight and customizable PHP development environment using Docker, NGINX, and PHP-FPM. Includes Makefile tooling, SSL support for localhost, and Kubernetes manifest generator. Built to simplify modern PHP project setups.</p>
-                        
+
                         <ul class="project-tags">
                             <li>Docker</li>
                             <li>NGINX</li>
@@ -23,9 +23,9 @@
                             <li>Makefile</li>
                             <li>SSL</li>
                         </ul>
-                        
+
                         <div class="project-links">
-                            <a href="https://github.com/rdurica/php_starter_kit" target="_blank" rel="noreferrer" class="project-link" data-magnetic>
+                            <a href="https://github.com/rdurica/php_starter_kit" target="_blank" rel="noreferrer" class="project-link">
                                 <span>View code</span>
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
                                   <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
@@ -35,75 +35,41 @@
                     </div>
                     <div class="project-visual">
                         <div class="project-visual-mock">
-                            <pre><code>
-version: '3.8'
-services:
-  php:
-    build:
-      context: .docker/php
-    volumes:
-      - .:/var/www/html
-    networks:
-      - app-net
+                            <pre><code><span class="com"># docker-compose.yml</span>
+<span class="kw">version</span>: <span class="str">'3.8'</span>
+<span class="kw">services</span>:
+  <span class="key">php</span>:
+    <span class="kw">build</span>:
+      <span class="kw">context</span>: <span class="str">.docker/php</span>
+    <span class="kw">volumes</span>:
+      - <span class="str">.:/var/www/html</span>
+    <span class="kw">networks</span>:
+      - <span class="str">app-net</span>
 
-  nginx:
-    image: nginx:alpine
-    ports:
-      - "443:443"
-    volumes:
-      - .:/var/www/html
-      - .docker/nginx:/etc/nginx/conf.d
-      - .docker/ssl:/etc/ssl/local
-    depends_on:
-      - php
-    networks:
-      - app-net
+  <span class="key">nginx</span>:
+    <span class="kw">image</span>: <span class="str">nginx:alpine</span>
+    <span class="kw">ports</span>:
+      - <span class="str">"443:443"</span>
+    <span class="kw">volumes</span>:
+      - <span class="str">.:/var/www/html</span>
+      - <span class="str">.docker/nginx:/etc/nginx/conf.d</span>
+      - <span class="str">.docker/ssl:/etc/ssl/local</span>
+    <span class="kw">depends_on</span>:
+      - <span class="str">php</span>
 
-networks:
-  app-net:
-    driver: bridge
-                            </code></pre>
+<span class="kw">networks</span>:
+  <span class="key">app-net</span>:
+    <span class="kw">driver</span>: <span class="str">bridge</span></code></pre>
                         </div>
                     </div>
                 </article>
 
-                <!-- Project 2 -->
+                <!-- Project 2: Oaza -->
                 <article class="project-card glow-card" data-reveal>
                     <div class="glow-card-content">
-                        <h3 class="project-title">Chronox</h3>
-                        <p class="project-desc">Personal time tracking and task management API built with Symfony and API Platform. Containerized with Docker.</p>
-                        
-                        <ul class="project-tags">
-                            <li>Symfony</li>
-                            <li>API Platform</li>
-                            <li>Docker</li>
-                            <li>MariaDB</li>
-                            <li>REST</li>
-                        </ul>
-                        
-                        <div class="project-links">
-                            <a href="https://github.com/rdurica/chronox-backend" target="_blank" rel="noreferrer" class="project-link" data-magnetic>
-                                <span>Code</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
-                                  <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
-                                </svg>
-                            </a>
-                            <a href="https://chronox-backend.robbyte.net/api" target="_blank" rel="noreferrer" class="project-link" data-magnetic>
-                                <span>Live API</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
-                                  <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Project 3 -->
-                <article class="project-card glow-card" data-reveal>
-                    <div class="glow-card-content">
-                        <h3 class="project-title">Salt Cave Website</h3>
+                        <h3 class="project-title">Oaza</h3>
                         <p class="project-desc">Commercial website for a local salt therapy center. Includes CMS-like interface, booking system, and photo gallery.</p>
-                        
+
                         <ul class="project-tags">
                             <li>PHP</li>
                             <li>Nette</li>
@@ -111,16 +77,43 @@ networks:
                             <li>CMS</li>
                             <li>Docker</li>
                         </ul>
-                        
+
                         <div class="project-links">
-                            <a href="https://github.com/rdurica/oaza" target="_blank" rel="noreferrer" class="project-link" data-magnetic>
+                            <a href="https://github.com/rdurica/oaza" target="_blank" rel="noreferrer" class="project-link">
                                 <span>Code</span>
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
                                   <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
                                 </svg>
                             </a>
-                            <a href="https://oazahb.cz" target="_blank" rel="noreferrer" class="project-link" data-magnetic>
+                            <a href="https://oazahb.cz" target="_blank" rel="noreferrer" class="project-link">
                                 <span>Live site</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Project 3: Process Atlas -->
+                <article class="project-card glow-card" data-reveal>
+                    <div class="glow-card-content">
+                        <h3 class="project-title">Process Atlas</h3>
+                        <p class="project-desc">Web application for modeling, documenting, and tracking revisions of business processes as visual flow diagrams. Designed with agentic development in mind.</p>
+
+                        <ul class="project-tags">
+                            <li>Laravel 13</li>
+                            <li>React</li>
+                            <li>TypeScript</li>
+                            <li>Inertia.js</li>
+                            <li>PostgreSQL</li>
+                            <li>Redis</li>
+                            <li>Docker</li>
+                        </ul>
+
+                        <div class="project-links">
+                            <a href="https://github.com/rdurica/process_atlas" target="_blank" rel="noreferrer" class="project-link">
+                                <span>Code</span>
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
                                   <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
                                 </svg>

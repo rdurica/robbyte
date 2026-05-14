@@ -11,10 +11,9 @@ document.addEventListener('DOMContentLoaded', () => {
     initializeNavigation();
     initializeHeroParallax();
     initializeRevealAnimations();
-    
+    initializeHeroParticles();
+
     if (!prefersReducedMotion && !isTouchDevice) {
-        initializeCustomCursor();
-        initializeMagneticButtons();
         initializeHoverGlow();
     }
 });
@@ -140,8 +139,8 @@ function initializeHeroParallax() {
                 return;
             }
 
-            const shift = Math.max(-14, Math.min(14, y * -0.05));
-            portrait.style.transform = `rotate(${-1 + shift * 0.05}deg) translateY(${shift}px)`;
+            const shift = Math.max(-10, Math.min(10, y * -0.03));
+            portrait.style.transform = `translateY(${shift}px)`;
         },
         { passive: true }
     );
@@ -189,98 +188,155 @@ function initializeRevealAnimations() {
     revealItems.forEach((item) => observer.observe(item));
 }
 
-function initializeCustomCursor() {
-    // Create cursor elements
-    const cursorDot = document.createElement('div');
-    cursorDot.classList.add('cursor-dot');
-    
-    const cursorOutline = document.createElement('div');
-    cursorOutline.classList.add('cursor-outline');
-    
-    document.body.appendChild(cursorDot);
-    document.body.appendChild(cursorOutline);
-
-    // Track mouse position
-    let mouseX = 0;
-    let mouseY = 0;
-    let outlineX = 0;
-    let outlineY = 0;
-
-    window.addEventListener('mousemove', (e) => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-        
-        cursorDot.style.left = `${mouseX}px`;
-        cursorDot.style.top = `${mouseY}px`;
-    });
-
-    // Smooth follow for outline
-    const render = () => {
-        outlineX += (mouseX - outlineX) * 0.15;
-        outlineY += (mouseY - outlineY) * 0.15;
-        
-        cursorOutline.style.left = `${outlineX}px`;
-        cursorOutline.style.top = `${outlineY}px`;
-        
-        requestAnimationFrame(render);
-    };
-    render();
-
-    // Add hover effects to interactive elements
-    const interactables = document.querySelectorAll('a, button, input, textarea, select, [data-magnetic]');
-    
-    interactables.forEach((el) => {
-        el.addEventListener('mouseenter', () => {
-            cursorDot.classList.add('hover');
-            cursorOutline.classList.add('hover');
-        });
-        
-        el.addEventListener('mouseleave', () => {
-            cursorDot.classList.remove('hover');
-            cursorOutline.classList.remove('hover');
-        });
-    });
-    
-    // Hide cursor when leaving window
-    document.addEventListener('mouseleave', () => {
-        cursorDot.style.opacity = '0';
-        cursorOutline.style.opacity = '0';
-    });
-    
-    document.addEventListener('mouseenter', () => {
-        cursorDot.style.opacity = '1';
-        cursorOutline.style.opacity = '1';
-    });
-}
-
-function initializeMagneticButtons() {
-    const magnetics = document.querySelectorAll('[data-magnetic]');
-    
-    magnetics.forEach((btn) => {
-        btn.addEventListener('mousemove', (e) => {
-            const rect = btn.getBoundingClientRect();
-            const x = e.clientX - rect.left - rect.width / 2;
-            const y = e.clientY - rect.top - rect.height / 2;
-            
-            // Adjust the multiplier to control the strength of the pull
-            btn.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
-        });
-        
-        btn.addEventListener('mouseleave', () => {
-            btn.style.transform = 'translate(0px, 0px)';
-        });
-    });
-}
-
 function initializeHoverGlow() {
     document.querySelectorAll('.glow-card').forEach((card) => {
         card.addEventListener('mousemove', (e) => {
             const rect = card.getBoundingClientRect();
             const x = e.clientX - rect.left;
             const y = e.clientY - rect.top;
-            
+
             card.style.setProperty('--mouse-x', `${x}px`);
             card.style.setProperty('--mouse-y', `${y}px`);
         });
+    });
+}
+
+function initializeHeroParticles() {
+    if (prefersReducedMotion) {
+        return;
+    }
+
+    const hero = document.querySelector('.hero');
+    if (!hero) {
+        return;
+    }
+
+    const canvas = document.createElement('canvas');
+    canvas.className = 'hero-particles';
+    canvas.style.cssText = 'position:absolute;inset:0;pointer-events:none;z-index:0;';
+    hero.insertBefore(canvas, hero.firstChild);
+
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    let animationId = null;
+    let isVisible = true;
+
+    function resize() {
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        canvas.width = hero.offsetWidth * dpr;
+        canvas.height = hero.offsetHeight * dpr;
+        ctx.scale(dpr, dpr);
+        canvas.style.width = hero.offsetWidth + 'px';
+        canvas.style.height = hero.offsetHeight + 'px';
+    }
+
+    function createParticles() {
+        const count = Math.min(60, Math.floor((canvas.width / window.devicePixelRatio) * 0.08));
+        particles = [];
+        const w = canvas.width / (window.devicePixelRatio || 1);
+        const h = canvas.height / (window.devicePixelRatio || 1);
+
+        for (let i = 0; i < count; i++) {
+            particles.push({
+                x: Math.random() * w,
+                y: Math.random() * h,
+                vx: (Math.random() - 0.5) * 0.3,
+                vy: (Math.random() - 0.5) * 0.3,
+                radius: Math.random() * 1.5 + 0.5,
+                opacity: Math.random() * 0.4 + 0.1,
+                pulse: Math.random() * Math.PI * 2,
+                pulseSpeed: Math.random() * 0.02 + 0.01
+            });
+        }
+    }
+
+    function draw() {
+        if (!isVisible) {
+            animationId = requestAnimationFrame(draw);
+            return;
+        }
+
+        const w = canvas.width / (window.devicePixelRatio || 1);
+        const h = canvas.height / (window.devicePixelRatio || 1);
+
+        ctx.clearRect(0, 0, w, h);
+
+        particles.forEach((p) => {
+            p.x += p.vx;
+            p.y += p.vy;
+            p.pulse += p.pulseSpeed;
+
+            if (p.x < 0) p.x = w;
+            if (p.x > w) p.x = 0;
+            if (p.y < 0) p.y = h;
+            if (p.y > h) p.y = 0;
+
+            const flicker = 0.7 + 0.3 * Math.sin(p.pulse);
+            const alpha = p.opacity * flicker;
+
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(96, 165, 250, ${alpha})`;
+            ctx.fill();
+
+            if (p.radius > 1.2) {
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.radius * 3, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(96, 165, 250, ${alpha * 0.15})`;
+                ctx.fill();
+            }
+        });
+
+        // Draw connections between nearby particles
+        const connectionDistance = 100;
+        const maxConnections = 3;
+
+        for (let i = 0; i < particles.length; i++) {
+            let connections = 0;
+            for (let j = i + 1; j < particles.length && connections < maxConnections; j++) {
+                const dx = particles[i].x - particles[j].x;
+                const dy = particles[i].y - particles[j].y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+
+                if (dist < connectionDistance) {
+                    const alpha = (1 - dist / connectionDistance) * 0.08;
+                    ctx.beginPath();
+                    ctx.moveTo(particles[i].x, particles[i].y);
+                    ctx.lineTo(particles[j].x, particles[j].y);
+                    ctx.strokeStyle = `rgba(96, 165, 250, ${alpha})`;
+                    ctx.lineWidth = 0.5;
+                    ctx.stroke();
+                    connections++;
+                }
+            }
+        }
+
+        animationId = requestAnimationFrame(draw);
+    }
+
+    resize();
+    createParticles();
+    draw();
+
+    window.addEventListener('resize', () => {
+        resize();
+        createParticles();
+    });
+
+    const observer = new IntersectionObserver(
+        (entries) => {
+            isVisible = entries[0].isIntersecting;
+        },
+        { threshold: 0 }
+    );
+    observer.observe(hero);
+
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden && animationId) {
+            cancelAnimationFrame(animationId);
+            animationId = null;
+        } else if (!document.hidden && !animationId) {
+            draw();
+        }
     });
 }
