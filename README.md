@@ -1,10 +1,10 @@
 # Robert Durica - personal portfolio
 
-[![PHP](https://img.shields.io/badge/PHP-8.4-blue.svg)](http://php.net)
+[![PHP](https://img.shields.io/badge/PHP-8.5-blue.svg)](http://php.net)
 [![Docker](https://img.shields.io/badge/Docker-powered-blue.svg)](https://www.docker.com/)
 [![composer](https://img.shields.io/badge/composer-latest-green.svg)](https://getcomposer.org/)
 
-![Image](https://github.com/user-attachments/assets/e50f15ee-677b-4d12-a4a0-30c7de5d84e9)
+![Banner](docs/img/main.png)
 
 ## Overview
 
@@ -12,22 +12,28 @@ This repository contains the source code of my personal developer portfolio. It 
 skills, certifications, and professional experience – with a focus on backend development in PHP, modern DevOps tools,
 and clean software architecture.
 
+## Tech Stack
 
-##  Live Site
+- **Backend:** PHP 8.5, Symfony 7.3, FrankenPHP
+- **Frontend:** Vite, Node.js 20+
+- **Database:** PostgreSQL (with Doctrine ORM)
+- **Cache / Sessions / Queue:** Redis
+- **Infrastructure:** Docker, Docker Compose
 
-[robbyte.net](https://robbyte.net)
+## Setup
 
-## Production
+```bash
+# First-time setup
+make init
 
-- Build the production image with dependencies baked in (no deploy-time composer install needed): `docker build -f build/prod/Dockerfile -t rdurica/robbyte:latest .` (ideally in CI, then push to your registry), or let Compose build it on the server.
-- The image listens on plain HTTP port `80`. Put it behind your reverse proxy and terminate TLS there; proxy traffic to port 80 on the container.
-- Required env: `APP_SECRET` (provide via shell or an env file copied from `build/prod/example.env`). Optional: `TRUSTED_PROXIES`, `TRUSTED_HOSTS`, `DOCKER_NETWORK` (defaults to `apps`).
-- Example run: `APP_SECRET=... docker run -d -p 80:80 --name robbyte rdurica/robbyte:latest`.
+# Start containers
+make up
 
-## Contributing
-
-If you would like to contribute to this project, please fork the repository and create a pull request. We welcome all
-contributions, including bug fixes, new features, and documentation improvements.
+# Run inside container
+docker compose exec portfolio composer install
+docker compose exec portfolio npm install
+docker compose exec portfolio npm run dev
+```
 
 ## License
 
