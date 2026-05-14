@@ -29,7 +29,7 @@
     --radius-sm: 6px;
     --radius-md: 10px;
     --radius-lg: 16px;
-    --container: 1140px;
+    --container: 1280px;
 
     --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     --font-display: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -162,10 +162,6 @@ img {
         0 0 90px rgb(24 145 255 / 0.45);
     transform: rotate(-49deg);
     transform-origin: right center;
-}
-
-.hero .container {
-    --container: 1280px;
 }
 
 .hero-bg-effects {
@@ -753,6 +749,7 @@ img {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 2rem;
+    margin-top: 0.5rem;
 }
 
 .focus-area {
