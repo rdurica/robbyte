@@ -37,7 +37,7 @@ jobs:
 
       - name: Run framework tests in Docker
         run: |
-          docker compose -f compose.ci.yaml run --rm --user root app sh -lc '
+          docker compose -f compose.ci.yaml run --rm --user root portfolio sh -lc '
             set -e
 
             if [ ! -f composer.json ]; then
