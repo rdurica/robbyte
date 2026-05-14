@@ -849,6 +849,19 @@ img {
     clip-path: none;
 }
 
+#about .section-head {
+    margin-bottom: 0;
+}
+
+#about .tech-stack {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+#about .focus-areas {
+    margin-top: 5rem;
+}
+
 .tech-label {
     font-family: var(--font-mono);
     font-size: 0.85rem;
@@ -860,25 +873,31 @@ img {
 .tech-list {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.75rem;
+    gap: 0.6rem;
     list-style: none;
 }
 
 .tech-list li {
-    padding: 0.25rem 0;
-    background: transparent;
-    border: 0;
-    border-radius: 0;
-    font-size: 0.85rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.45rem 0.85rem;
+    background: rgba(255 255 255 / 0.03);
+    border: 1px solid rgba(255 255 255 / 0.06);
+    border-radius: 6px;
     font-weight: 500;
     color: rgb(174 193 220);
-    transition: color 0.2s ease;
+    transition: all 0.2s ease;
     font-family: var(--font-mono);
     font-size: 0.8rem;
+    cursor: default;
 }
 
 .tech-list li:hover {
     color: rgb(var(--accent-300));
+    border-color: rgb(var(--accent-400) / 0.4);
+    background: rgb(var(--accent-500) / 0.08);
+    box-shadow: 0 0 16px rgb(var(--accent-500) / 0.1);
 }
 
 /* Projects Section */
