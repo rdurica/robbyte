@@ -968,6 +968,7 @@ img {
 .project-title {
     font-size: 1.8rem;
     font-weight: 700;
+    margin-top: 0.5rem;
     margin-bottom: 1rem;
     line-height: 1.2;
     background: linear-gradient(135deg, rgb(246 250 255), rgb(172 202 239));
@@ -1069,6 +1070,14 @@ img {
 
 .project-visual-mock pre {
     padding: 2rem 1.5rem 1.5rem;
+}
+
+.project-visual img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    border-radius: inherit;
 }
 
 .project-visual-mock .kw { color: rgb(var(--accent-400)); }
