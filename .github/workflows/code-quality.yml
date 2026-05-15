@@ -38,7 +38,7 @@ jobs:
 
             - name: Run frontend checks in Docker
               run: |
-                  docker compose -f compose.ci.yaml run --rm --user root app sh -lc '
+                  docker compose -f compose.ci.yaml run --rm --user root portfolio sh -lc '
                     set -e
 
                     if [ ! -f package.json ]; then
@@ -74,7 +74,7 @@ jobs:
 
             - name: Run backend checks in Docker
               run: |
-                  docker compose -f compose.ci.yaml run --rm --user root app sh -lc '
+                  docker compose -f compose.ci.yaml run --rm --user root portfolio sh -lc '
                     set -e
 
                     if [ ! -f composer.json ]; then

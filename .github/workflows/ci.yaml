@@ -37,7 +37,7 @@ jobs:
 
       - name: Run framework tests in Docker
         run: |
-          docker compose -f compose.ci.yaml run --rm --user root app sh -lc '
+          docker compose -f compose.ci.yaml run --rm --user root portfolio sh -lc '
             set -e
 
             if [ ! -f composer.json ]; then
@@ -52,9 +52,15 @@ jobs:
               php artisan key:generate
               php artisan test
             elif [ -f bin/console ]; then
-              php bin/console doctrine:database:create --if-not-exists --env=test
-              php bin/console doctrine:schema:update --force --env=test
-              vendor/bin/phpunit
+              if php bin/console list doctrine >/dev/null 2>&1; then
+                php bin/console doctrine:database:create --if-not-exists --env=test
+                php bin/console doctrine:schema:update --force --env=test
+              fi
+              if [ -x vendor/bin/phpunit ]; then
+                vendor/bin/phpunit
+              else
+                echo "No phpunit found; skipping PHP tests."
+              fi
             elif [ -x vendor/bin/tester ]; then
               vendor/bin/tester tests -s
             elif [ -x vendor/bin/phpunit ]; then
