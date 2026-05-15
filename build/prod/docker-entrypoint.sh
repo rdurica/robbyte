@@ -1,7 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 
-echo "PHP Starter Kit - Starting..."
+echo "Robbyte - Starting..."
 
 wait_for() {
     local host="$1" port="$2" name="$3" max=30 i=0
@@ -43,8 +43,16 @@ if [ -f "artisan" ]; then
 fi
 
 if [ -f "bin/console" ]; then
-    echo "Running Symfony migrations..."
-    php bin/console doctrine:migrations:migrate --no-interaction --allow-no-migration
+    echo "Clearing and warming Symfony cache..."
+    php bin/console cache:clear --no-warmup
+    php bin/console cache:warmup
+
+    if php bin/console doctrine:migrations:migrate --help >/dev/null 2>&1; then
+        echo "Running Symfony migrations..."
+        php bin/console doctrine:migrations:migrate --no-interaction --allow-no-migration
+    else
+        echo "No Symfony migrations command found; skipping migrations."
+    fi
 fi
 
 echo "Starting FrankenPHP..."
