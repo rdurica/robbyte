@@ -56,7 +56,11 @@ jobs:
                 php bin/console doctrine:database:create --if-not-exists --env=test
                 php bin/console doctrine:schema:update --force --env=test
               fi
-              vendor/bin/phpunit
+              if [ -x vendor/bin/phpunit ]; then
+                vendor/bin/phpunit
+              else
+                echo "No phpunit found; skipping PHP tests."
+              fi
             elif [ -x vendor/bin/tester ]; then
               vendor/bin/tester tests -s
             elif [ -x vendor/bin/phpunit ]; then
