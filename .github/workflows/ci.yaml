@@ -52,8 +52,10 @@ jobs:
               php artisan key:generate
               php artisan test
             elif [ -f bin/console ]; then
-              php bin/console doctrine:database:create --if-not-exists --env=test
-              php bin/console doctrine:schema:update --force --env=test
+              if php bin/console list doctrine >/dev/null 2>&1; then
+                php bin/console doctrine:database:create --if-not-exists --env=test
+                php bin/console doctrine:schema:update --force --env=test
+              fi
               vendor/bin/phpunit
             elif [ -x vendor/bin/tester ]; then
               vendor/bin/tester tests -s

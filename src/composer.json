@@ -1,4 +1,6 @@
 {
+    "name": "rdurica/robbyte",
+    "description": "Personal portfolio website",
     "type": "project",
     "license": "proprietary",
     "minimum-stability": "stable",
