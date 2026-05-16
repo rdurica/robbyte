@@ -11,7 +11,9 @@
     root /app/src/public
     encode zstd br gzip
     
-    php_server
+    php_server {
+        worker /app/src/public/index.php 8
+    }
     file_server
     
     header {
