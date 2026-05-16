@@ -1334,6 +1334,8 @@ img {
         min-height: calc(100svh - 3.5rem);
         overflow: hidden;
         padding-bottom: 3rem;
+        align-content: start;
+        gap: 0;
     }
 
     .hero-overline {
@@ -1349,7 +1351,18 @@ img {
     }
 
     .hero-portrait {
-        display: none;
+        display: flex;
+        min-height: 30rem;
+        max-width: 100%;
+        margin: -6rem auto 0;
+        justify-content: center;
+        align-self: auto;
+    }
+
+    .hero-portrait img {
+        width: min(36rem, 95%);
+        margin-right: 0;
+        margin-bottom: -2rem;
     }
 
     .hero-stats {
@@ -1429,7 +1442,7 @@ img {
     .hero-scroll {
         width: 3.65rem;
         height: 3.65rem;
-        bottom: 1.25rem;
+        bottom: 6rem;
     }
 
     .page-scroll-top {
