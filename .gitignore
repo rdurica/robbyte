@@ -49,3 +49,4 @@ src/storage/logs/*
 # Symfony specific
 src/var/
 src/config/secrets/prod/prod.decrypt.private.php
+src/config/reference.php
