@@ -4,28 +4,26 @@
             <div class="section-head">
                 <p class="section-label">Projects</p>
                 <h2 class="section-title">Side Projects</h2>
-                <p class="section-intro">Most of my professional work sits behind NDAs. These are the things I build in the open tools I needed, experiments I wanted to run, and ideas I wanted to ship.</p>
+                <p class="section-intro">Most of my professional work sits behind NDAs. Pohromadě is the live product I host. The rest are open code samples — architecture, tests, and delivery you can inspect.</p>
             </div>
 
             <div class="projects-grid">
-                <!-- Featured Project -->
                 <article class="project-card featured">
                     <div class="project-info">
-                        <span class="project-badge">Featured</span>
-                        <h3 class="project-title">PHP Starter Kit</h3>
-                        <p class="project-desc">Modern Docker-based starter kit for PHP applications built on FrankenPHP. Ships with automatic HTTPS, security-hardened defaults, multi-environment configs, and a web-based setup wizard for Laravel, Symfony, or Nette. CI/CD, DevContainer, and code quality tooling included out of the box.</p>
+                        <span class="project-badge">Featured · Live SaaS</span>
+                        <h3 class="project-title">Pohromadě</h3>
+                        <p class="project-desc">A production SaaS I designed, built, and host. Membership, events, QR payments, and Android in one system. Real associations use it. I own the domain, delivery, and operations.</p>
 
                         <ul class="project-tags">
-                            <li>Docker</li>
-                            <li>FrankenPHP</li>
-                            <li>PHP</li>
-                            <li>CI/CD</li>
-                            <li>DevContainer</li>
+                            <li>Members</li>
+                            <li>Events</li>
+                            <li>QR payments</li>
+                            <li>Android</li>
                         </ul>
 
                         <div class="project-links">
-                            <a href="https://github.com/rdurica/php_starter_kit" target="_blank" rel="noreferrer" class="project-link">
-                                <span>View code</span>
+                            <a href="https://pohromade.cz/" target="_blank" rel="noreferrer" class="project-link">
+                                <span>Live product</span>
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
                                   <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
                                 </svg>
@@ -33,44 +31,85 @@
                         </div>
                     </div>
                     <div class="project-visual">
+                        <img src="/assets/img/projects/pohromade.webp" alt="Pohromadě product homepage" loading="lazy">
+                    </div>
+                </article>
+
+                <article class="project-card">
+                    <div class="project-visual">
                         <div class="project-visual-mock">
-                            <pre><code><span class="com"># docker-compose.yml</span>
-<span class="kw">version</span>: <span class="str">'3.8'</span>
-<span class="kw">services</span>:
-  <span class="key">php</span>:
-    <span class="kw">build</span>:
-      <span class="kw">context</span>: <span class="str">.docker/php</span>
-    <span class="kw">volumes</span>:
-      - <span class="str">.:/var/www/html</span>
-    <span class="kw">networks</span>:
-      - <span class="str">app-net</span>
+                            <pre><code><span class="com">// CreateOrderHandler.php</span>
+<span class="kw">final class</span> <span class="key">CreateOrderHandler</span>
+{
+    <span class="kw">public function</span> __construct(
+        <span class="kw">private</span> OrderRepository <span class="key">$orders</span>,
+    ) {}
 
-  <span class="key">nginx</span>:
-    <span class="kw">image</span>: <span class="str">nginx:alpine</span>
-    <span class="kw">ports</span>:
-      - <span class="str">"443:443"</span>
-    <span class="kw">volumes</span>:
-      - <span class="str">.:/var/www/html</span>
-      - <span class="str">.docker/nginx:/etc/nginx/conf.d</span>
-      - <span class="str">.docker/ssl:/etc/ssl/local</span>
-    <span class="kw">depends_on</span>:
-      - <span class="str">php</span>
+    <span class="kw">public function</span> __invoke(
+        CreateOrder <span class="key">$command</span>
+    ): OrderId {
+        <span class="key">$order</span> = Order::place(...);
+        <span class="kw">$this</span>-&gt;orders-&gt;save(<span class="key">$order</span>);
 
-<span class="kw">networks</span>:
-  <span class="key">app-net</span>:
-    <span class="kw">driver</span>: <span class="str">bridge</span></code></pre>
+        <span class="kw">return</span> <span class="key">$order</span>-&gt;id();
+    }
+}</code></pre>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3 class="project-title">Orders API</h3>
+                        <p class="project-desc">A time-boxed coding sample: current Symfony 8, hexagonal architecture, and tests. How I approached it is in the README.</p>
+
+                        <ul class="project-tags">
+                            <li>Symfony 8</li>
+                            <li>Hexagonal</li>
+                            <li>PHPUnit</li>
+                        </ul>
+
+                        <div class="project-links">
+                            <a href="https://github.com/rdurica/orders-api-example" target="_blank" rel="noreferrer" class="project-link">
+                                <span>View code</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
+                                </svg>
+                            </a>
                         </div>
                     </div>
                 </article>
 
-                <!-- Project 2: Oaza -->
+                <article class="project-card">
+                    <div class="project-visual">
+                        <img src="/assets/img/projects/process-atlas.webp" alt="Process Atlas application screenshot" loading="lazy">
+                    </div>
+                    <div class="project-info">
+                        <h3 class="project-title">Process Atlas</h3>
+                        <p class="project-desc">Process modeling with Laravel, React, and MCP, plus a Docker demo. It shows I ship more than a pure backend.</p>
+
+                        <ul class="project-tags">
+                            <li>Laravel</li>
+                            <li>React</li>
+                            <li>MCP</li>
+                            <li>Docker</li>
+                        </ul>
+
+                        <div class="project-links">
+                            <a href="https://github.com/rdurica/process_atlas" target="_blank" rel="noreferrer" class="project-link">
+                                <span>Code</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
                 <article class="project-card">
                     <div class="project-visual">
                         <img src="/assets/img/projects/oaza.webp" alt="Oaza website screenshot" loading="lazy">
                     </div>
                     <div class="project-info">
                         <h3 class="project-title">Oaza</h3>
-                        <p class="project-desc">Full-stack website for a local salt therapy business. Handles bookings, content management, and gallery — built solo as a complete product exercise from architecture to deployment.</p>
+                        <p class="project-desc">A live site for a local salt therapy business. Bookings and CMS, running in real production.</p>
 
                         <ul class="project-tags">
                             <li>PHP</li>
@@ -89,35 +128,6 @@
                             </a>
                             <a href="https://oazahb.cz" target="_blank" rel="noreferrer" class="project-link">
                                 <span>Live site</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
-                                  <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Project 3: Process Atlas -->
-                <article class="project-card">
-                    <div class="project-visual">
-                        <img src="/assets/img/projects/process-atlas.webp" alt="Process Atlas application screenshot" loading="lazy">
-                    </div>
-                    <div class="project-info">
-                        <h3 class="project-title">Process Atlas</h3>
-                        <p class="project-desc">Process modeling tool that turns business workflows into visual, versioned diagrams. Built to explore how LLM-assisted patterns can improve documentation and keep teams aligned without stale wiki pages.</p>
-
-                        <ul class="project-tags">
-                            <li>Laravel</li>
-                            <li>React</li>
-                            <li>TypeScript</li>
-                            <li>PostgreSQL</li>
-                            <li>Redis</li>
-                            <li>Docker</li>
-                        </ul>
-
-                        <div class="project-links">
-                            <a href="https://github.com/rdurica/process_atlas" target="_blank" rel="noreferrer" class="project-link">
-                                <span>Code</span>
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
                                   <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
                                 </svg>

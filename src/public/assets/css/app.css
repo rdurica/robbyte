@@ -128,91 +128,18 @@ img {
     overflow: hidden;
     padding: 4.5rem 0 3rem;
     background:
-        radial-gradient(circle at 67% 35%, rgb(18 116 255 / 0.18), transparent 25rem),
-        radial-gradient(circle at 82% 56%, rgb(0 147 255 / 0.14), transparent 30rem),
-        linear-gradient(90deg, rgb(1 6 14) 0%, rgb(3 10 22) 46%, rgb(1 4 11) 100%);
+        radial-gradient(circle at 72% 42%, rgb(18 116 255 / 0.16), transparent 28rem),
+        linear-gradient(90deg, rgb(1 6 14) 0%, rgb(3 10 22) 52%, rgb(1 4 11) 100%);
     isolation: isolate;
 }
 
-.hero::before,
-.hero::after {
-    content: "";
-    position: absolute;
-    pointer-events: none;
-    z-index: 0;
-}
-
 .hero::before {
-    inset: 0;
-    background:
-        linear-gradient(90deg, rgb(0 0 0 / 0.76), transparent 21%, transparent 72%, rgb(0 0 0 / 0.76)),
-        linear-gradient(180deg, rgb(0 0 0 / 0.7), transparent 21%, transparent 76%, rgb(0 0 0 / 0.82)),
-        radial-gradient(circle at 51% 39%, rgb(43 140 255 / 0.12), transparent 34rem);
-}
-
-.hero::after {
-    width: 74rem;
-    height: 2px;
-    right: -9rem;
-    top: 48%;
-    background: linear-gradient(90deg, transparent, rgb(28 146 255 / 0.3), rgb(77 183 255), rgb(141 215 255), transparent);
-    box-shadow:
-        0 0 16px rgb(24 145 255 / 0.9),
-        0 0 46px rgb(24 145 255 / 0.74),
-        0 0 90px rgb(24 145 255 / 0.45);
-    transform: rotate(-49deg);
-    transform-origin: right center;
-}
-
-.hero-bg-effects {
+    content: "";
     position: absolute;
     inset: 0;
     pointer-events: none;
     z-index: 0;
-    background:
-        linear-gradient(90deg, rgb(37 128 255 / 0.04) 0 1px, transparent 1px 100%),
-        linear-gradient(0deg, rgb(37 128 255 / 0.028) 0 1px, transparent 1px 100%),
-        radial-gradient(circle at 64% 32%, rgb(54 143 255 / 0.13), transparent 23rem),
-        radial-gradient(circle at 30% 55%, rgb(31 111 255 / 0.09), transparent 32rem);
-    background-size: 88px 88px, 88px 88px, auto, auto;
-    opacity: 0.9;
-    mask-image: linear-gradient(90deg, black 0%, black 88%, transparent);
-    -webkit-mask-image: linear-gradient(90deg, black 0%, black 88%, transparent);
-}
-
-.hero-bg-effects::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background:
-        linear-gradient(90deg, rgb(31 132 255 / 0.5), rgb(31 132 255 / 0.5)) 0 8.25rem / 6rem 1px no-repeat,
-        linear-gradient(90deg, rgb(31 132 255 / 0.42), rgb(31 132 255 / 0.42)) 2.5rem 13.25rem / 8rem 1px no-repeat,
-        linear-gradient(90deg, rgb(31 132 255 / 0.34), rgb(31 132 255 / 0.34)) 0 31.4rem / 7.25rem 1px no-repeat,
-        linear-gradient(90deg, rgb(31 132 255 / 0.32), rgb(31 132 255 / 0.32)) 0 42rem / 9rem 1px no-repeat,
-        linear-gradient(180deg, rgb(31 132 255 / 0.4), rgb(31 132 255 / 0.4)) 5.95rem 8.25rem / 1px 5rem no-repeat,
-        linear-gradient(180deg, rgb(31 132 255 / 0.32), rgb(31 132 255 / 0.32)) 7.25rem 31.4rem / 1px 10.6rem no-repeat,
-        linear-gradient(135deg, transparent 0 18%, rgb(33 130 255 / 0.2) 18% 18.15%, transparent 18.15% 100%),
-        linear-gradient(135deg, transparent 0 83%, rgb(33 130 255 / 0.13) 83% 83.12%, transparent 83.12% 100%),
-        radial-gradient(circle at 5.95rem 8.25rem, transparent 0 3px, rgb(33 130 255 / 0.9) 3px 4px, transparent 4px),
-        radial-gradient(circle at 10.5rem 13.25rem, transparent 0 3px, rgb(33 130 255 / 0.72) 3px 4px, transparent 4px),
-        radial-gradient(circle at 7.25rem 31.4rem, transparent 0 3px, rgb(33 130 255 / 0.68) 3px 4px, transparent 4px),
-        radial-gradient(circle at 9rem 42rem, transparent 0 3px, rgb(33 130 255 / 0.58) 3px 4px, transparent 4px);
-    opacity: 0.92;
-    filter: drop-shadow(0 0 6px rgb(33 130 255 / 0.32));
-}
-
-.hero-bg-effects::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background:
-        radial-gradient(circle at 43% 48%, rgb(90 181 255 / 0.68) 0 1px, transparent 2px),
-        radial-gradient(circle at 50% 20%, rgb(66 161 255 / 0.46) 0 1px, transparent 2px),
-        radial-gradient(circle at 61% 12%, rgb(62 163 255 / 0.36) 0 1px, transparent 2px),
-        radial-gradient(circle at 76% 28%, rgb(72 171 255 / 0.4) 0 1px, transparent 2px),
-        radial-gradient(circle at 84% 62%, rgb(72 171 255 / 0.36) 0 1px, transparent 2px),
-        linear-gradient(115deg, transparent 0 58%, rgb(24 128 255 / 0.22) 58% 58.15%, transparent 58.15% 100%),
-        linear-gradient(135deg, transparent 0 78%, rgb(28 126 255 / 0.2) 78% 78.16%, transparent 78.16% 100%);
+    background: radial-gradient(circle at 72% 45%, rgb(43 140 255 / 0.12), transparent 32rem);
 }
 
 .hero-stage {
@@ -243,7 +170,6 @@ img {
     letter-spacing: 0.18em;
     line-height: 1.2;
     text-transform: uppercase;
-    text-shadow: 0 0 18px rgb(36 137 255 / 0.72);
     margin-bottom: -0.55rem;
 }
 
@@ -255,10 +181,6 @@ img {
     line-height: 0.94;
     color: rgb(241 248 255);
     white-space: nowrap;
-    text-shadow:
-        0 2px 0 rgb(142 195 255 / 0.2),
-        0 0 22px rgb(116 184 255 / 0.35),
-        0 0 44px rgb(45 140 255 / 0.18);
 }
 
 .hero-line {
@@ -266,7 +188,15 @@ img {
     height: 2px;
     background: linear-gradient(90deg, rgb(41 149 255), rgb(41 149 255) 46%, transparent 46%);
     border-radius: 1px;
-    box-shadow: 0 0 16px rgb(38 145 255 / 0.7);
+}
+
+.hero-meta {
+    font-family: var(--font-mono);
+    font-size: 0.86rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: rgb(151 216 255);
+    margin-top: -0.15rem;
 }
 
 .hero-dek {
@@ -275,105 +205,7 @@ img {
     line-height: 1.38;
     color: rgb(171 190 216);
     max-width: 32ch;
-    text-shadow: 0 0 18px rgb(0 0 0 / 0.7);
-    margin-top: 0.25rem;
-}
-
-/* Stats Row in Hero */
-.hero-stats {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0.75rem;
-    margin-top: 1.25rem;
-    max-width: 33.2rem;
-}
-
-.stat-card {
-    --panel-shape: polygon(7% 0, 100% 0, 100% 88%, 93% 100%, 0 100%, 0 12%);
-    --panel-border: rgb(35 139 255 / 0.46);
-    min-height: 10.4rem;
-    background:
-        linear-gradient(180deg, rgb(11 23 42 / 0.64), rgb(2 10 24 / 0.42)),
-        linear-gradient(135deg, rgb(43 150 255 / 0.18), transparent 28%, transparent 72%, rgb(43 150 255 / 0.16));
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 0;
-    border-radius: 8px;
-    clip-path: var(--panel-shape);
-    padding: 1.55rem 0.75rem 1.2rem;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 0.55rem;
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-    box-shadow:
-        inset 0 0 22px rgb(20 131 255 / 0.07),
-        0 0 22px rgb(20 131 255 / 0.05);
-}
-
-.stat-card::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgb(78 173 255 / 0.18), transparent);
-    transition: left 0.5s ease;
-}
-
-.stat-card::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: 2;
-    pointer-events: none;
-    background: var(--panel-border);
-    clip-path: var(--panel-shape);
-    padding: 1px;
-    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-}
-
-.stat-card:hover {
-    --panel-border: rgb(91 190 255 / 0.78);
-    box-shadow: 0 0 34px rgb(25 139 255 / 0.22), inset 0 0 22px rgb(25 139 255 / 0.09);
-    transform: translateY(-2px);
-}
-
-.stat-card:hover::before {
-    left: 100%;
-}
-
-.stat-icon {
-    width: 26px;
-    height: 26px;
-    color: rgb(56 164 255);
-    filter: drop-shadow(0 0 8px rgb(45 150 255 / 0.72));
-}
-
-.stat-val {
-    font-size: 2.05rem;
-    font-weight: 800;
-    font-family: var(--font-display);
-    color: rgb(55 155 255);
-    line-height: 1;
-    text-shadow: 0 0 20px rgb(45 150 255 / 0.62);
-}
-
-.stat-label {
-    font-size: 0.72rem;
-    color: rgb(181 195 216);
-    font-weight: 600;
-    font-family: var(--font-mono);
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    line-height: 1.32;
+    margin-top: 0;
 }
 
 /* Hero Scroll */
@@ -711,7 +543,6 @@ img {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    text-shadow: 0 0 34px rgb(45 140 255 / 0.14);
 }
 
 .section-intro {
@@ -743,6 +574,23 @@ img {
     color: rgb(var(--text-200));
     line-height: 1.8;
     margin-bottom: 2.5rem;
+}
+
+.about-text + .about-text {
+    margin-top: -1.5rem;
+}
+
+.about-text a {
+    color: rgb(151 216 255);
+    text-decoration: underline;
+    text-underline-offset: 0.18em;
+    text-decoration-color: rgb(151 216 255 / 0.45);
+    transition: color 0.2s ease, text-decoration-color 0.2s ease;
+}
+
+.about-text a:hover {
+    color: rgb(var(--accent-300));
+    text-decoration-color: rgb(var(--accent-300) / 0.7);
 }
 
 .focus-areas {
@@ -920,7 +768,7 @@ img {
 /* Projects Section */
 .projects-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     gap: 1.5rem;
 }
 
@@ -1089,6 +937,16 @@ img {
     padding: 2rem 1.5rem 1.5rem;
 }
 
+.project-card:not(.featured) .project-visual-mock {
+    font-size: 0.68rem;
+    width: 100%;
+    height: 100%;
+}
+
+.project-card:not(.featured) .project-visual-mock pre {
+    padding: 1.1rem 1rem 0.8rem;
+}
+
 .project-visual img {
     width: 100%;
     height: 100%;
@@ -1231,12 +1089,6 @@ img {
         padding: 4rem 0 0;
     }
 
-    .hero::after {
-        right: -22rem;
-        top: 58%;
-        width: 58rem;
-    }
-
     .hero-stage {
         grid-template-columns: 1fr;
         gap: 1rem;
@@ -1266,11 +1118,6 @@ img {
         margin-bottom: -2.5rem;
     }
 
-    .hero-stats {
-        margin: 0 auto;
-        width: 100%;
-    }
-
     .about-layout, .contact-layout {
         grid-template-columns: 1fr;
     }
@@ -1279,6 +1126,10 @@ img {
         grid-template-columns: 1fr;
         padding: 2rem;
         gap: 1.5rem;
+    }
+
+    .projects-grid {
+        grid-template-columns: 1fr;
     }
 
     .contact-layout {
@@ -1320,16 +1171,6 @@ img {
         align-items: flex-start;
     }
 
-    .hero::after {
-        right: -28rem;
-        top: 62%;
-        opacity: 0.8;
-    }
-
-    .hero-bg-effects {
-        background-size: 64px 64px, 64px 64px, auto, auto;
-    }
-
     .hero-stage {
         min-height: calc(100svh - 3.5rem);
         overflow: hidden;
@@ -1365,30 +1206,6 @@ img {
         margin-bottom: -2rem;
     }
 
-    .hero-stats {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 0.45rem;
-    }
-
-    .stat-card {
-        min-height: 8.25rem;
-        padding: 1rem 0.4rem 0.8rem;
-    }
-
-    .stat-icon {
-        width: 21px;
-        height: 21px;
-    }
-
-    .stat-val {
-        font-size: 1.45rem;
-    }
-
-    .stat-label {
-        font-size: 0.54rem;
-        letter-spacing: 0.08em;
-    }
-
     .btn {
         min-width: auto;
         flex: 1;
@@ -1418,17 +1235,6 @@ img {
 
     .hero-name {
         font-size: clamp(2.45rem, 11.6vw, 3.1rem);
-    }
-
-    .hero-stats {
-        grid-template-columns: repeat(3, 1fr);
-        max-width: 100%;
-        gap: 0.35rem;
-    }
-
-    .stat-card {
-        min-height: 7rem;
-        padding-inline: 0.25rem;
     }
 
     .btn {
